@@ -38,7 +38,7 @@ const app = require('./server/app.js');
 const { connect, getConnectionInfo } = require('./server/database');
 
 // 포트 설정 - Cloudtype에서 자동 할당
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // 서버 시작 함수 (DB 연결과 분리)
 function startServer() {

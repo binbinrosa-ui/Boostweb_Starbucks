@@ -22,23 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // 정적 파일 제공
 app.use(express.static(path.join(__dirname, '..')));
 
-// 스마트 MongoDB 연결 초기화
-async function initializeDatabase() {
-    try {
-        await connect();
-        const info = getConnectionInfo();
-        console.log('📊 [Starbucks] 데이터베이스 연결 정보:', {
-            database: info.database,
-            isConnected: info.isConnected,
-            connectionType: info.connectionString.includes('mongodb+srv') ? 'Atlas (클라우드)' : '로컬'
-        });
-    } catch (error) {
-        console.error('❌ [Starbucks] 데이터베이스 초기화 실패:', error.message);
-        if (process.env.NODE_ENV !== 'development') {
-            process.exit(1); // 프로덕션에서는 DB 연결 실패 시 종료
-        }
-    }
-}
+// MongoDB 연결은 index.js에서 처리
 
 // API 라우트
 const authRoutes = require('./routes/auth');
@@ -150,39 +134,6 @@ app.use((req, res) => {
     });
 });
 
-// 서버 시작 함수
-async function startServer() {
-    const PORT = process.env.PORT || 3000;
-    
-    try {
-        // 1. 데이터베이스 연결
-        await initializeDatabase();
-        
-        // 2. 서버 시작
-        app.listen(PORT, () => {
-            console.log(`🚀 [Starbucks] 서버가 포트 ${PORT}에서 실행 중입니다.`);
-            console.log(`🌍 [Starbucks] 웹사이트: http://localhost:${PORT}`);
-            console.log(`🔗 [Starbucks] API: http://localhost:${PORT}/api`);
-            console.log(`📝 [Starbucks] 환경: ${process.env.NODE_ENV || 'development'}`);
-            
-            // 연결 정보 표시
-            setTimeout(() => {
-                const info = getConnectionInfo();
-                console.log('✅ [Starbucks] 시스템 준비 완료!');
-                console.log(`📊 [Starbucks] DB 상태: ${info.isConnected ? '연결됨' : '연결 안됨'}`);
-            }, 1000);
-        });
-        
-    } catch (error) {
-        console.error('❌ [Starbucks] 서버 시작 실패:', error.message);
-        process.exit(1);
-    }
-}
-
-// 메인 실행부
-if (require.main === module) {
-    startServer().catch(console.error);
-}
-
+// Express 앱 export (서버 시작은 index.js에서 처리)
 module.exports = app;
 

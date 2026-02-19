@@ -19,8 +19,31 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// 정적 파일 제공
-app.use(express.static(path.join(__dirname, '..')));
+// 요청 로깅 미들웨어 (개발/디버깅용)
+app.use((req, res, next) => {
+    const timestamp = new Date().toISOString();
+    console.log(`📥 [${timestamp}] ${req.method} ${req.url} - ${req.ip}`);
+    next();
+});
+
+// 정적 파일 제공 (프로젝트 루트 디렉토리)
+app.use(express.static(path.join(__dirname, '..'), {
+    index: false, // 자동 index.html 서비스 비활성화 (수동 라우팅 사용)
+    dotfiles: 'ignore', // 숨김 파일 무시
+    setHeaders: (res, path) => {
+        // 캐싱 헤더 설정
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        } else if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
+
+// favicon 처리 (404 대신 빈 응답)
+app.get('/favicon.ico', (req, res) => {
+    res.status(204).end(); // No Content
+});
 
 // MongoDB 연결은 index.js에서 처리
 
@@ -121,6 +144,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
+// 간단한 ping 엔드포인트 (가장 기본적인 응답 테스트)
+app.get('/ping', (req, res) => {
+    res.status(200).send('pong');
+});
+
 // API 기본 응답 (연결 테스트용)
 app.get('/api', (req, res) => {
     res.json({
@@ -130,6 +158,7 @@ app.get('/api', (req, res) => {
         status: 'running',
         timestamp: new Date().toISOString(),
         endpoints: {
+            ping: '/ping',
             health: '/api/health',
             dbStatus: '/api/db-status',
             auth: {

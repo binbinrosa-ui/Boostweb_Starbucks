@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Sign In - Starbucks Korea - 스타벅스 코리아</title>
+    <link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="스타벅스 코리아 로그인" name="description" />
+    <meta content="스타벅스, 로그인, 회원" name="keywords" />
+    <meta content="Starbucks Korea" name="author" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Component Loader -->
+    <script src="js/load-components.js" defer></script>
+</head> 
+
+<body>
+    <div id="wrapper">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="preloader1"></div>
+        </div>
+
+        <!-- Header Placeholder (컴포넌트로 로드됨) -->
+        <div id="header-placeholder"></div>
+
+        <!-- Content -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            
+            <!-- Login Section -->
+            <section class="login-section pt100 pb100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 col-lg-4">
+                            <div class="login-box" data-aos="fade-up">
+                                <div class="login-header text-center mb-4">
+                                    <h2 class="login-title">Sign In</h2>
+                                    <p class="login-subtitle">스타벅스 코리아에 오신 것을 환영합니다</p>
+                                </div>
+
+                                <form id="loginForm" class="login-form">
+                                    <div class="form-group mb-3">
+                                        <label for="loginEmail" class="form-label">이메일 주소</label>
+                                        <input type="email" class="form-control" id="loginEmail" name="email" placeholder="이메일 주소를 입력하세요" required>
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label for="loginPassword" class="form-label">비밀번호</label>
+                                        <div class="password-input-wrapper">
+                                            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="비밀번호를 입력하세요" required>
+                                            <button type="button" class="password-toggle" id="passwordToggle">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            로그인 상태 유지
+                                        </label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-login w-100 mb-3">
+                                        로그인
+                                    </button>
+
+                                    <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+                                    <div id="loginSuccess" class="alert alert-success" style="display: none;"></div>
+
+                                    <div class="login-links text-center mt-4">
+                                        <a href="join.html" class="login-link">회원가입</a>
+                                        <span class="login-separator">|</span>
+                                        <a href="#" class="login-link">이메일 찾기</a>
+                                        <span class="login-separator">|</span>
+                                        <a href="#" class="login-link">비밀번호 찾기</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- content close -->
+
+        <!-- Footer Placeholder (컴포넌트로 로드됨) -->
+        <div id="footer-placeholder"></div>
+
+        <!-- Back to Top -->
+        <a href="#" id="back-to-top"></a>
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Password toggle
+        const passwordToggle = document.getElementById('passwordToggle');
+        const loginPassword = document.getElementById('loginPassword');
+        
+        if (passwordToggle && loginPassword) {
+            passwordToggle.addEventListener('click', function() {
+                const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                loginPassword.setAttribute('type', type);
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // Login form submission
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                const errorDiv = document.getElementById('loginError');
+                const successDiv = document.getElementById('loginSuccess');
+                
+                // Hide previous messages
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+                
+                try {
+                    const response = await fetch('http://localhost:3000/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                            rememberMe: rememberMe
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Store token if provided
+                        if (data.token) {
+                            if (rememberMe) {
+                                localStorage.setItem('token', data.token);
+                            } else {
+                                sessionStorage.setItem('token', data.token);
+                            }
+                        }
+                        
+                        successDiv.textContent = '로그인 성공!';
+                        successDiv.style.display = 'block';
+                        
+                        // Redirect to home page after 1 second
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    } else {
+                        errorDiv.textContent = data.message || '로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.';
+                        errorDiv.style.display = 'block';
+                    }
+                } catch (error) {
+                    errorDiv.textContent = '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+                    errorDiv.style.display = 'block';
+                    console.error('Login error:', error);
+                }
+            });
+        }
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
+

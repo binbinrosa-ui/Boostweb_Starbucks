@@ -1,0 +1,1986 @@
+/* FONT UPDATE: 2025-12-28 16:30 - Changed to original template fonts (Lato/Montserrat) */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --starbucks-green: #00704A;
+    --starbucks-light-green: #1E3932;
+    --starbucks-gold: #D4AF37;
+    --starbucks-cream: #F7F7F7;
+    --starbucks-dark: #1E3932;
+    --body-font: "Lato", Helvetica, Arial, sans-serif;
+    --title-font: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color: #333;
+    font-family: var(--body-font);
+    overflow-x: hidden;
+}
+
+/* 전역 링크 색상 기본값 제거 (footer는 별도로 설정) */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--starbucks-green);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#preloader[style*="display: none"] {
+    display: none !important;
+}
+
+.preloader1 {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Top Navigation Bar */
+.top-nav-bar {
+    background: #f6f5f0;
+    padding: 8px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1001;
+}
+
+.top-nav-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+    gap: 8px;
+}
+
+.top-nav-link {
+    color: #666;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 12px;
+    transition: color 0.3s ease;
+    padding: 0 6px;
+    white-space: nowrap;
+}
+
+.top-nav-link:hover {
+    color: var(--starbucks-green);
+    text-decoration: none;
+}
+
+.top-nav-separator {
+    width: 1px;
+    height: 12px;
+    background: #ddd;
+    margin: 0 2px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 36px;
+    height: 28px;
+    flex-shrink: 0;
+    transition: width 0.3s ease;
+}
+
+.search-wrapper.active {
+    width: 200px;
+}
+
+.search-toggle-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+    padding: 6px 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 28px;
+    z-index: 2;
+}
+
+.search-toggle-btn:hover {
+    color: var(--starbucks-green);
+    border-color: var(--starbucks-green);
+}
+
+.search-toggle-btn.active {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.search-input-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 12px;
+    width: 100%;
+    height: 28px;
+    transition: all 0.3s ease;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.search-input-container.active {
+    display: flex;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    font-family: var(--body-font);
+    color: #333;
+    background: transparent;
+    padding: 0;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-close-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.search-close-btn:hover {
+    color: var(--starbucks-green);
+}
+
+/* Header Wrapper */
+.header-wrap {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Header */
+header {
+    position: fixed;
+    width: 100%;
+    top: 32px;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+header.transparent {
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+/* 메인 페이지(index.html)에서만 투명 배경 적용 */
+body:has(.carousel-slide) header.transparent {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* 메인 페이지에서만 흰색 텍스트 */
+body:has(.carousel-slide) header.transparent #mainmenu a {
+    color: white;
+}
+
+body:has(.carousel-slide) header.transparent #mainmenu > li > a::after {
+    background: white;
+}
+
+/* 다른 페이지에서는 기본 색상 유지 */
+header.transparent #mainmenu a {
+    color: #333;
+}
+
+header.transparent #mainmenu > li > a::after {
+    background: var(--starbucks-green);
+}
+
+.de-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.de-flex-col {
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+#logo img:hover {
+    transform: scale(1.05);
+}
+
+#mainmenu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+#mainmenu li {
+    position: relative;
+}
+
+#mainmenu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s;
+    padding: 0;
+    line-height: 1;
+    font-family: var(--title-font);
+}
+
+#mainmenu a:hover {
+    color: var(--starbucks-green);
+}
+
+/* 메가 메뉴 스타일 */
+.mega-menu {
+    position: fixed;
+    top: calc(32px + 80px); /* 상단바 높이 + 헤더 높이 (.de-flex padding 15px*2 + 로고 50px) */
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    background: #1e3932;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 999;
+    padding: 40px 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    margin: 0;
+    overflow: visible;
+}
+
+#mainmenu li:hover .mega-menu,
+.mega-menu:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 메가 메뉴 호버 영역 확장 */
+#mainmenu li {
+    position: relative;
+}
+
+/* Hover 브릿지: 드롭다운과 메뉴 항목 사이의 hover 유지 */
+#mainmenu li::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 20px; /* 드롭다운과 메뉴 항목 사이의 간격만 커버 */
+    z-index: 998;
+    pointer-events: none;
+    background: transparent;
+}
+
+#mainmenu li:hover::before {
+    pointer-events: auto;
+}
+
+.mega-menu h5 {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+}
+
+.mega-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu ul li {
+    margin-bottom: 4px;
+}
+
+.mega-menu ul a {
+    color: rgba(255,255,255,0.8) !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    transition: color 0.3s ease !important;
+    display: block !important;
+    padding: 2.5px 0 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10001 !important;
+}
+
+.mega-menu ul a:hover {
+    color: white !important;
+    padding-left: 10px !important;
+}
+
+/* 더 구체적인 선택자로 작은 주제 스타일 강제 적용 */
+.mega-menu .container .row .col-md-3 ul li a,
+.mega-menu .container .row .col-md-4 ul li a,
+#mainmenu .mega-menu ul li a {
+    color: rgba(255,255,255,0.8) !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    transition: color 0.3s ease !important;
+    display: block !important;
+    padding: 2.5px 0 !important;
+}
+
+.mega-menu .container .row .col-md-3 ul li a:hover,
+.mega-menu .container .row .col-md-4 ul li a:hover,
+#mainmenu .mega-menu ul li a:hover {
+    color: white !important;
+    padding-left: 10px !important;
+}
+
+/* 반응형 메가 메뉴 */
+@media (max-width: 991px) {
+    .mega-menu {
+        display: none !important;
+    }
+}
+
+/* 메가 메뉴가 아닌 기존 ul 스타일 제거 */
+#mainmenu > li > ul:not(.mega-menu) {
+    display: none;
+}
+
+/* 메인 메뉴 항목 스타일 개선 */
+#mainmenu > li > a {
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#mainmenu > li > a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--starbucks-green);
+    transition: width 0.3s ease;
+}
+
+#mainmenu > li:hover > a::after {
+    width: 100%;
+}
+
+.btn-main {
+    background: var(--starbucks-green);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+    background: var(--starbucks-light-green);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+header.transparent .btn-main {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+header.transparent .btn-main:hover {
+    background: white;
+    color: var(--starbucks-green);
+}
+
+#menu-btn {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#menu-btn span {
+    width: 25px;
+    height: 3px;
+    background: var(--starbucks-green);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* 메인 페이지에서만 흰색 메뉴 버튼 */
+body:has(.carousel-slide) header.transparent #menu-btn span {
+    background: white;
+}
+
+/* 다른 페이지에서는 기본 색상 유지 */
+header.transparent #menu-btn span {
+    background: var(--starbucks-green);
+}
+
+/* Carousel */
+.carousel-slide {
+    height: 100vh;
+    position: relative;
+}
+
+.carousel-item {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.carousel-item h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: var(--title-font);
+    word-break: break-word;
+}
+
+.carousel-item h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--starbucks-gold);
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--title-font);
+}
+
+.carousel-item p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    opacity: 0.95;
+    word-break: break-word;
+}
+
+/* 반응형 캐러셀 텍스트 */
+@media (max-width: 991px) {
+    .carousel-item h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .carousel-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+    
+    .carousel-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item h1 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+        line-height: 1.1;
+    }
+    
+    .carousel-item h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .carousel-item p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-top: 15px;
+    }
+    
+    .carousel-item .col-lg-4 {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .carousel-item h3 {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .carousel-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-top: 15px;
+    }
+    
+    .carousel-item .offset-lg-1 {
+        margin-left: 0;
+    }
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-control-prev {
+    left: 30px;
+}
+
+.carousel-control-next {
+    right: 30px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.carousel-item h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: var(--title-font);
+}
+
+.carousel-item h3 {
+    color: var(--starbucks-gold);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.carousel-item p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+}
+
+.btn-border {
+    border: 2px solid white;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-border:hover {
+    background: white;
+    color: var(--starbucks-green);
+    text-decoration: none;
+}
+
+.carousel-indicators {
+    bottom: 30px;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: transparent;
+}
+
+.carousel-indicators .active {
+    background: white;
+}
+
+.mouse-icon-click {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-decoration: none;
+}
+
+.mouse {
+    position: absolute;
+    width: 22px;
+    height: 42px;
+    bottom: 40px;
+    left: 50%;
+    margin-left: -12px;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    animation: intro 1s;
+}
+
+.scroll {
+    display: block;
+    width: 3px;
+    height: 3px;
+    margin: 6px auto;
+    border-radius: 4px;
+    background: #fff;
+    animation: finger 1s infinite;
+}
+
+@keyframes intro {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes finger {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Spacer */
+.spacer-single {
+    width: 100%;
+    height: 30px;
+    display: block;
+    clear: both;
+}
+
+.spacer-half {
+    width: 100%;
+    height: 15px;
+    display: block;
+    clear: both;
+}
+
+/* Sections */
+section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.de-title h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--starbucks-green);
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+}
+
+.de-title h5 {
+    color: var(--starbucks-gold);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Gallery Hover Effects */
+.de-image-hover {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.de-image-hover img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.dih-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,112,74,0.8), rgba(30,57,50,0.8));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dih-title-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dih-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.dih-wm {
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: 0.3;
+    display: block;
+    margin-top: 10px;
+}
+
+.de-image-hover:hover .dih-overlay,
+.de-image-hover:hover .dih-title-wrap {
+    opacity: 1;
+}
+
+.de-image-hover:hover img {
+    transform: scale(1.1);
+}
+
+/* Specials Section */
+.jarallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.jarallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.jarallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.jarallax .container {
+    position: relative;
+    z-index: 2;
+}
+
+.image-with-counter {
+    position: relative;
+    text-align: center;
+}
+
+.image-with-counter img {
+    max-width: 400px;
+    width: 100%;
+}
+
+.div-1 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.de_count h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--starbucks-green);
+    margin-bottom: 5px;
+}
+
+.de_count h5 {
+    color: var(--starbucks-gold);
+    font-size: 1rem;
+}
+
+/* About Section */
+#section-about {
+    background: var(--starbucks-cream);
+}
+
+#section-about i {
+    font-size: 3rem;
+    color: var(--starbucks-green);
+    margin-bottom: 20px;
+    display: block;
+}
+
+#section-about h3 {
+    color: var(--starbucks-green);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Location Section */
+#section-location {
+    background: var(--starbucks-cream);
+}
+
+#section-location i {
+    font-size: 3rem;
+    color: var(--starbucks-green);
+    margin-bottom: 20px;
+}
+
+#section-location h3 {
+    color: var(--starbucks-green);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Blog Section */
+.card-image-1 {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card-image-1:hover {
+    transform: translateY(-10px);
+}
+
+.card-image-1 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.d-inner {
+    padding: 25px;
+}
+
+.atr-date {
+    color: var(--starbucks-gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.d-inner h3 {
+    color: var(--starbucks-green);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 10px 0;
+    line-height: 1.4;
+    font-family: var(--title-font);
+}
+
+.d-tag {
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.d-text {
+    text-decoration: none;
+    color: inherit;
+}
+
+.d-text:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Menu Styles */
+.menu-wrap {
+    background: rgba(30, 57, 50, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-item {
+    color: #ffffff;
+    display: table;
+    width: 100%;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.thead {
+    font-weight: bold;
+    border: none;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.menu-item.thead .c1 {
+    font-family: var(--title-font);
+    position: relative;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #fff;
+}
+
+.menu-item.thead .c1:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #ffffff;
+    top: 14px;
+    margin-left: 10px;
+    width: 30px;
+}
+
+.menu-item .c1, .menu-item .c2, .menu-item .c3 {
+    display: table-cell;
+    width: auto;
+    color: #fff;
+}
+
+.menu-item .c1 {
+    width: 60%;
+    padding-right: 10px;
+}
+
+.menu-item .c1 i {
+    font-size: 16px;
+    margin-left: 10px;
+    color: var(--starbucks-gold);
+}
+
+.menu-item .c1 span {
+    padding: 2px 4px 2px 5px;
+    color: #ffffff;
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 10px;
+    background: var(--starbucks-gold);
+    border-radius: 3px;
+}
+
+.menu-item.thead .c2, .menu-item.thead .c3 {
+    font-family: var(--title-font);
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.menu-item .c2, .menu-item .c3 {
+    white-space: nowrap;
+    width: 20%;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 18px;
+}
+
+.menu-item.thead .c2 span, .menu-item.thead .c3 span {
+    display: block;
+    padding-right: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.menu-item .c2 span, .menu-item .c3 span {
+    display: inline-block;
+    margin-right: 5px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-item .cur {
+    color: #fff;
+}
+
+.masonry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.masonry .item {
+    flex: 1 1 calc(50% - 15px);
+    min-width: 300px;
+}
+
+/* Quote Section */
+blockquote {
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--starbucks-green);
+    text-align: center;
+    border: none;
+    margin: 0;
+    padding: 40px;
+    position: relative;
+    font-family: var(--title-font);
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--starbucks-gold);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+blockquote span {
+    display: block;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 20px;
+    font-style: normal;
+}
+
+/* Gallery Grid */
+#gallery .item {
+    padding: 5px;
+}
+
+#gallery .de-image-hover {
+    height: 200px;
+}
+
+#gallery .de-image-hover img {
+    height: 100%;
+}
+
+/* Footer */
+footer {
+    background: #2c2c2c;
+    color: #999;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* Footer - 모든 링크 색상 강제 설정 (Bootstrap 오버라이드) */
+footer,
+footer * {
+    --bs-link-color: #999 !important;
+    --bs-link-hover-color: #fff !important;
+}
+
+/* Bootstrap 유틸리티 클래스 오버라이드 */
+footer .text-primary,
+footer .text-info,
+footer .text-success,
+footer .text-danger,
+footer .text-warning,
+footer .text-light,
+footer .text-dark,
+footer a.text-primary,
+footer a.text-info,
+footer a.text-success {
+    color: #999 !important;
+}
+
+footer a.link-highlight.text-primary,
+footer a.link-highlight.text-success {
+    color: #00704A !important;
+}
+
+footer a,
+footer a:link,
+footer a:visited,
+footer a:active,
+footer a:focus,
+footer a:hover,
+footer a:focus-visible,
+footer * a,
+footer * a:link,
+footer * a:visited,
+footer * a:active,
+footer * a:focus,
+footer * a:hover,
+footer * a:focus-visible,
+footer .footer-links a,
+footer .footer-links a:link,
+footer .footer-links a:visited,
+footer .footer-links a:active,
+footer .footer-links a:focus,
+footer .footer-links-bottom a,
+footer .footer-links-bottom a:link,
+footer .footer-links-bottom a:visited,
+footer .footer-links-bottom a:active,
+footer .footer-links-bottom a:focus,
+footer .footer-utils a,
+footer .footer-utils a:link,
+footer .footer-utils a:visited,
+footer .footer-utils a:active,
+footer .footer-utils a:focus {
+    color: #999 !important;
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+}
+
+footer a:hover,
+footer * a:hover,
+footer .footer-links a:hover,
+footer .footer-links-bottom a:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.footer-container {
+    padding: 50px 0 30px;
+}
+
+.footer-links {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-links h6 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a,
+.footer-links ul li a:link,
+.footer-links ul li a:visited,
+.footer-links ul li a:active,
+.footer-links ul li a:focus {
+    color: #999 !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+    font-size: 13px;
+    display: inline-block;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links ul li a:hover,
+.footer-links ul li a:focus:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links ul li a i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Vertical Starbucks Logo */
+.footer-logo-vertical {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    min-height: 200px;
+}
+
+.footer-logo-vertical .logo-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: #999;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: var(--title-font);
+    letter-spacing: 5px;
+    line-height: 1.2;
+}
+
+.footer-bottom {
+    padding-top: 20px;
+}
+
+.footer-links-bottom {
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    text-align: center;
+}
+
+.footer-links-bottom a,
+.footer-links-bottom a:link,
+.footer-links-bottom a:visited,
+.footer-links-bottom a:active,
+.footer-links-bottom a:focus {
+    color: #999 !important;
+    text-decoration: none !important;
+    font-size: 12px;
+    transition: color 0.3s ease;
+    padding: 0 8px;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links-bottom a.link-highlight,
+.footer-links-bottom a.link-highlight:link,
+.footer-links-bottom a.link-highlight:visited,
+.footer-links-bottom a.link-highlight:active,
+.footer-links-bottom a.link-highlight:focus {
+    color: #00704A !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links-bottom a.link-highlight:hover,
+.footer-links-bottom a.link-highlight:focus:hover {
+    color: #00704A !important;
+    opacity: 0.8;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links-bottom a:hover,
+.footer-links-bottom a:focus:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.footer-links-bottom .separator {
+    color: #666;
+    margin: 0;
+    font-size: 12px;
+}
+
+.footer-utils {
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.footer-utils .footer-btn,
+.footer-utils .footer-btn:link,
+.footer-utils .footer-btn:visited,
+.footer-utils .footer-btn:active,
+.footer-utils .footer-btn:focus {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 12px;
+    padding: 8px 20px;
+    border: 1px solid #fff !important;
+    background: transparent !important;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-utils .footer-btn:hover,
+.footer-utils .footer-btn:focus:hover {
+    background: #fff !important;
+    color: #1e3932 !important;
+    text-decoration: none !important;
+    border: 1px solid #fff !important;
+}
+
+.footer-utils .separator {
+    display: none;
+}
+
+.footer-info {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.footer-info p {
+    color: #999;
+    font-size: 12px;
+    margin: 5px 0;
+    white-space: normal;
+    word-spacing: normal;
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+}
+
+.footer-copyright p {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-links .col-md-2 {
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo-vertical {
+        min-height: 150px;
+        justify-content: center;
+    }
+    
+    .footer-links-bottom {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-links-bottom .separator {
+        display: none;
+    }
+    
+    .footer-utils {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-utils .footer-btn {
+        width: auto;
+        min-width: 150px;
+        text-align: center;
+    }
+}
+
+/* Back to Top */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--starbucks-green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    background: var(--starbucks-light-green);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #mainmenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+
+    #mainmenu.show {
+        display: flex;
+    }
+
+    #menu-btn {
+        display: flex;
+    }
+
+    .carousel-item h1 {
+        font-size: 2.5rem;
+    }
+
+    .de-title h2 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .btn-main {
+        display: none;
+    }
+}
+
+/* Animation Classes */
+.fadeInUp {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fadeInLeft {
+    animation: fadeInLeft 0.8s ease forwards;
+}
+
+.fadeInRight {
+    animation: fadeInRight 0.8s ease forwards;
+}
+
+.zoomIn {
+    animation: zoomIn 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Contact Page Styles */
+.pt100 {
+    padding-top: 100px;
+}
+
+.pb100 {
+    padding-bottom: 100px;
+}
+
+/* Subheader Section */
+#subheader {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#subheader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#subheader .center-y {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+#subheader h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+#subheader p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+}
+
+/* Contact Form Styles */
+.form-border {
+    padding: 40px;
+    background: var(--starbucks-cream);
+    border-radius: 15px;
+}
+
+#contact_form input[type="text"],
+#contact_form textarea,
+#contact_form input[type="email"],
+#contact_form input[type="number"],
+#contact_form input[type="phone"] {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    color: #333;
+    border: solid 2px rgba(30, 57, 50, 0.2);
+    border-radius: 5px;
+    height: auto;
+    background: white;
+    font-family: var(--body-font);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#contact_form input[type="text"]:focus,
+#contact_form textarea:focus,
+#contact_form input[type="email"]:focus,
+#contact_form input[type="number"]:focus,
+#contact_form input[type="phone"]:focus {
+    outline: none;
+    border-color: var(--starbucks-green);
+    box-shadow: 0 0 0 3px rgba(0, 112, 74, 0.1);
+}
+
+#contact_form textarea {
+    height: 185px;
+    resize: vertical;
+}
+
+#contact_form label {
+    font-family: var(--title-font);
+    margin-bottom: 10px;
+    color: var(--starbucks-green);
+    font-weight: 600;
+}
+
+#contact_form .btn-main {
+    background: var(--starbucks-green);
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#contact_form .btn-main:hover {
+    background: var(--starbucks-light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 74, 0.3);
+}
+
+/* Form Error/Success Messages */
+.error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.success {
+    color: var(--starbucks-green);
+    font-size: 0.875rem;
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(0, 112, 74, 0.1);
+    border-radius: 5px;
+    display: none;
+}
+
+.error.show,
+.success.show {
+    display: block;
+}
+
+#mail_success,
+#mail_fail,
+#success_message,
+#error_message {
+    margin-top: 15px;
+}
+
+/* Jarallax Image */
+.jarallax-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Responsive Contact Page */
+@media (max-width: 768px) {
+    #subheader {
+        min-height: 300px;
+    }
+
+    #subheader h1 {
+        font-size: 2.5rem;
+    }
+
+    #subheader p {
+        font-size: 1rem;
+    }
+
+    .form-border {
+        padding: 25px;
+    }
+
+    .pt100 {
+        padding-top: 60px;
+    }
+
+    .pb100 {
+        padding-bottom: 60px;
+    }
+}
+
+/* Login & Join Page Styles */
+.login-section,
+.join-section {
+    background: var(--starbucks-cream);
+    min-height: calc(100vh - 200px);
+}
+
+.login-box,
+.join-box {
+    background: white;
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-title,
+.join-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--starbucks-green);
+    margin-bottom: 10px;
+    font-family: var(--title-font);
+}
+
+.login-subtitle,
+.join-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.login-form .form-label,
+.join-form .form-label {
+    font-weight: 600;
+    color: var(--starbucks-green);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.login-form .form-control,
+.join-form .form-control,
+.join-form .form-select {
+    border: 2px solid rgba(30, 57, 50, 0.2);
+    border-radius: 5px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-form .form-control:focus,
+.join-form .form-control:focus,
+.join-form .form-select:focus {
+    border-color: var(--starbucks-green);
+    box-shadow: 0 0 0 3px rgba(0, 112, 74, 0.1);
+    outline: none;
+}
+
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 10;
+}
+
+.password-toggle:hover {
+    color: var(--starbucks-green);
+}
+
+.btn-login,
+.btn-join {
+    background: var(--starbucks-green);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover,
+.btn-join:hover {
+    background: var(--starbucks-light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 74, 0.3);
+    color: white;
+}
+
+.login-links {
+    margin-top: 20px;
+}
+
+.login-link {
+    color: var(--starbucks-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: var(--starbucks-light-green);
+    text-decoration: underline;
+}
+
+.login-separator {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+.form-check-input:checked {
+    background-color: var(--starbucks-green);
+    border-color: var(--starbucks-green);
+}
+
+.form-check-label {
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--starbucks-green);
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+}
+
+.terms-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.terms-section .form-check {
+    padding-left: 30px;
+}
+
+.terms-section .form-check-input {
+    margin-top: 0.4rem;
+}
+
+.info-section {
+    padding: 20px 0;
+}
+
+/* Responsive Login & Join */
+@media (max-width: 768px) {
+    .login-box,
+    .join-box {
+        padding: 30px 20px;
+    }
+
+    .login-title,
+    .join-title {
+        font-size: 2rem;
+    }
+
+    .terms-section {
+        padding: 20px 15px;
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Starbucks Korea - 스타벅스 코리아</title>
+    <link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="스타벅스 코리아 공식 홈페이지" name="description" />
+    <meta content="스타벅스, 커피, 음료, 매장, 리워드" name="keywords" />
+    <meta content="Starbucks Korea" name="author" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Component Loader -->
+    <script src="js/load-components.js" defer></script>
+</head> 
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="preloader1"></div>
+        </div>
+
+        <!-- Header Placeholder (컴포넌트로 로드됨) -->
+        <div id="header-placeholder"></div>
+
+        <!-- Content -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            
+            <!-- Carousel -->
+            <div id="starbucks-carousel" class="carousel slide carousel-slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#starbucks-carousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#starbucks-carousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#starbucks-carousel" data-bs-slide-to="2"></button>
+                </div>
+                
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-image: url('images/background/starbucks-main-1.jpg')">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="container text-white">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 offset-lg-1 mb-sm-30">
+                                        <h3 class="fadeInUp">PICK YOUR</h3>
+                                        <h1 class="fadeInUp">FAVORITE</h1>
+                                        <a href="menu.html" class="btn-border fadeInUp">Explore Menu</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="fadeInRight">Discover a world of exceptional choices at Starbucks. Experience our signature beverages, perfectly paired food offerings, and thoughtfully designed products that bring value to every moment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item" style="background-image: url('images/background/starbucks-main-2.jpg')">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="container text-white">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 offset-lg-1 mb-sm-30">
+                                        <h3 class="fadeInUp">EXPERIENCE</h3>
+                                        <h1 class="fadeInUp">STARBUCKS UP CLOSE</h1>
+                                        <a href="#section-location" class="btn-border fadeInUp">Find a Store</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="fadeInRight">Find the Starbucks store nearest you! Explore our Reserve stores for a unique coffee experience, convenient Drive-Thru locations, and community spaces where connections flourish.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item" style="background-image: url('images/background/starbucks-main-3.jpg')">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="container text-white">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 offset-lg-1 mb-sm-30">
+                                        <h3 class="fadeInUp">RESERVE</h3>
+                                        <h1 class="fadeInUp">MAGAZINE</h1>
+                                        <a href="#section-blog" class="btn-border fadeInUp">Learn More</a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="fadeInRight">Discover extraordinary moments in everyday life through Reserve Magazine. Explore deeper coffee experiences and stories that celebrate the art and passion of Starbucks Reserve.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#starbucks-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#starbucks-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                
+                <a href="#section-welcome" class="mouse-icon-click scroll-to" data-aos="fade-up" data-aos-delay="2s">
+                    <span class="mouse fadeScroll relative" data-scroll-speed="2">
+                        <span class="scroll"></span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Welcome Section -->
+            <section id="section-welcome">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center" data-aos="fade-up">
+                            <div class="de-title">
+                                <h5><span style="color: var(--starbucks-gold);">PICK YOUR</span></h5>
+                                <h2>FAVORITE</h2>
+                            </div>
+                            <p>다양한 메뉴를 스타벅스에서 즐겨보세요. 스타벅스만의 특별함을 경험할 수 있는 최상의 선택 - 음료, 스타벅스 커피와 완벽한 어울림을 자랑하는 푸드, 다양한 시도와 디자인으로 가치를 더하는 상품, 소중한 사람에게 마음을 전하는 가장 좋은 방법 스타벅스 카드</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <div class="row g-4">
+                                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                                        <div class="de-image-hover">
+                                            <a href="images/background/container_01.jpg" class="image-popup">
+                                                <span class="dih-title-wrap">
+                                                    <span class="dih-title" style="font-family: var(--title-font);">Fresh Ingredients</span>
+                                                    <span class="dih-wm">01</span>
+                                                </span>
+                                                <span class="dih-overlay"></span>
+                                                <img src="images/background/container_01.jpg" class="img-fluid" alt="Fresh Ingredients">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                                        <div class="de-image-hover">
+                                            <a href="images/background/container_02.jpg" class="image-popup">
+                                                <span class="dih-title-wrap">
+                                                    <span class="dih-title" style="font-family: var(--title-font);">Authentic Taste</span>
+                                                    <span class="dih-wm">02</span>
+                                                </span>
+                                                <span class="dih-overlay"></span>
+                                                <img src="images/background/container_02.jpg" class="img-fluid" alt="Authentic Taste">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                                        <div class="de-image-hover">
+                                            <a href="images/background/container_03.jpg" class="image-popup">
+                                                <span class="dih-title-wrap">
+                                                    <span class="dih-title" style="font-family: var(--title-font);">Cozy Atmosphere</span>
+                                                    <span class="dih-wm">03</span>
+                                                </span>
+                                                <span class="dih-overlay"></span>
+                                                <img src="images/background/container_03.jpg" class="img-fluid" alt="Cozy Atmosphere">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                                        <div class="de-image-hover">
+                                            <a href="images/background/container_04.jpg" class="image-popup">
+                                                <span class="dih-title-wrap">
+                                                    <span class="dih-title" style="font-family: var(--title-font);">Live Music</span>
+                                                    <span class="dih-wm">04</span>
+                                                </span>
+                                                <span class="dih-overlay"></span>
+                                                <img src="images/background/container_04.jpg" class="img-fluid" alt="Live Music">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specials Section -->
+            <section id="section-specials" class="jarallax text-white" style="background-image: url('images/background/reserve_bg_pc.jpg')">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 offset-md-1 text-center" data-aos="fade-right">
+                            <div class="de-title">
+                                <h5><span style="color: var(--starbucks-gold);">스타벅스</span></h5>
+                                <h2 style="color: white;">리저브</h2>
+                            </div>
+                            <div>
+                                <h3>HONDURAS CAFICO</h3>
+                                <p>Flavor Notes: Nutty Chocolate, Dried Apricot</p>
+                                <p>온두라스 카피코는 견과류의 부드러운 향과 초콜릿의 달콤함, 그리고 말린 살구의 깊은 풍미가 어우러진 특별한 원두입니다.</p>
+                                <a href="menu.html" class="btn-border">자세히 보기</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-1" data-aos="fade-left">
+                            <div class="image-with-counter">
+                                <img class="img-1 img-fluid" src="images/background/reserve_coffee_pc.png" alt="Honduras Cafico">
+                                <div class="div-1">
+                                    <div class="de_count">
+                                        <h3><span class="timer" data-to="847">0</span></h3>
+                                        <h5>오늘 판매량</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="section-about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="fas fa-coffee"></i>
+                            <h3>Aromatic Taste</h3>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+                        </div>
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="fas fa-utensils"></i>
+                            <h3>Delicious Foods</h3>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+                        </div>
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="fas fa-glass-cheers"></i>
+                            <h3>Make Your Party</h3>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Drinks Section -->
+            <section id="section-drinks" aria-label="section" class="jarallax" style="background-image: url('images/background/Drink.jpg')">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 offset-md-3 text-center">
+                            <div class="de-title">
+                                <h5 class="s1" data-aos="fade-up" data-aos-delay="500"><span style="color: var(--starbucks-gold);">인기</span></h5>
+                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="750">음료</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Drinks Menu Section -->
+            <section id="section-drinks-menu" aria-label="section">
+                <div class="container">
+                    <div class="row g-5 masonry">
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">콜드 브루</div>
+                                    <div class="c2">Tall<span>355ml</span></div>
+                                    <div class="c3">Grande<span>473ml</span></div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">콜드 브루<i class="fa fa-thumbs-up" title="recommend"></i></div>
+                                    <div class="c2"><span class="cur">₩</span>4,500</div>
+                                    <div class="c3"><span class="cur">₩</span>5,000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">콜드 브루 오트 라떼</div>
+                                    <div class="c2"><span class="cur">₩</span>5,900</div>
+                                    <div class="c3"><span class="cur">₩</span>6,400</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">바닐라 크림 콜드 브루</div>
+                                    <div class="c2"><span class="cur">₩</span>5,900</div>
+                                    <div class="c3"><span class="cur">₩</span>6,400</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">나이트로 콜드 브루</div>
+                                    <div class="c2"><span class="cur">₩</span>6,000</div>
+                                    <div class="c3"><span class="cur">₩</span>6,500</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">에스프레소</div>
+                                    <div class="c2">Tall<span>355ml</span></div>
+                                    <div class="c3">Grande<span>473ml</span></div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">아메리카노</div>
+                                    <div class="c2"><span class="cur">₩</span>4,500</div>
+                                    <div class="c3"><span class="cur">₩</span>5,000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카페 라떼</div>
+                                    <div class="c2"><span class="cur">₩</span>5,000</div>
+                                    <div class="c3"><span class="cur">₩</span>5,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카푸치노<i class="fa fa-thumbs-up" title="recommend"></i></div>
+                                    <div class="c2"><span class="cur">₩</span>5,000</div>
+                                    <div class="c3"><span class="cur">₩</span>5,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카페 모카</div>
+                                    <div class="c2"><span class="cur">₩</span>5,500</div>
+                                    <div class="c3"><span class="cur">₩</span>6,000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카라멜 마키아토</div>
+                                    <div class="c2"><span class="cur">₩</span>5,800</div>
+                                    <div class="c3"><span class="cur">₩</span>6,300</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카페 비안코</div>
+                                    <div class="c2"><span class="cur">₩</span>4,800</div>
+                                    <div class="c3"><span class="cur">₩</span>5,300</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">프라푸치노</div>
+                                    <div class="c2">Tall<span>355ml</span></div>
+                                    <div class="c3">Grande<span>473ml</span></div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">자바 칩 프라푸치노</div>
+                                    <div class="c2"><span class="cur">₩</span>6,300</div>
+                                    <div class="c3"><span class="cur">₩</span>6,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">카라멜 프라푸치노</div>
+                                    <div class="c2"><span class="cur">₩</span>5,900</div>
+                                    <div class="c3"><span class="cur">₩</span>6,400</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">화이트 초콜릿 모카 프라푸치노</div>
+                                    <div class="c2"><span class="cur">₩</span>6,300</div>
+                                    <div class="c3"><span class="cur">₩</span>6,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">에스프레소 프라푸치노</div>
+                                    <div class="c2"><span class="cur">₩</span>5,500</div>
+                                    <div class="c3"><span class="cur">₩</span>6,000</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">티(티바나)</div>
+                                    <div class="c2">Tall<span>355ml</span></div>
+                                    <div class="c3">Grande<span>473ml</span></div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">차이 티 라떼</div>
+                                    <div class="c2"><span class="cur">₩</span>5,600</div>
+                                    <div class="c3"><span class="cur">₩</span>6,100</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">유자 민트 티</div>
+                                    <div class="c2"><span class="cur">₩</span>5,100</div>
+                                    <div class="c3"><span class="cur">₩</span>5,600</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">잉글리시 브렉퍼스트 티</div>
+                                    <div class="c2"><span class="cur">₩</span>4,600</div>
+                                    <div class="c3"><span class="cur">₩</span>5,100</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">제주 유기농 녹차</div>
+                                    <div class="c2"><span class="cur">₩</span>5,100</div>
+                                    <div class="c3"><span class="cur">₩</span>5,600</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Section -->
+            <section id="section-food" aria-label="section" class="jarallax" style="background-image: url('images/background/Food.jpg')">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 offset-md-3 text-center">
+                            <div class="de-title">
+                                <h5 class="s1" data-aos="fade-up" data-aos-delay="500"><span style="color: var(--starbucks-gold);">인기</span></h5>
+                                <h2 class="text-white" data-aos="fade-up" data-aos-delay="750">푸드</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Menu Section -->
+            <section id="section-food-menu" aria-label="section">
+                <div class="container">
+                    <div class="row g-5 masonry">
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">브레드</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">가격</div>
+                                </div>
+                                <div class="spacer-half"></div>
+                                <div class="menu-item">
+                                    <div class="c1">클래식 스콘</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>4,200</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">치즈 베이글</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>4,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">크루아상</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>4,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">플레인 베이글<i class="fa fa-thumbs-up" title="recommend"></i></div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>3,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">시나몬 롤</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>5,200</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">케이크</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">가격</div>
+                                </div>
+                                <div class="spacer-half"></div>
+                                <div class="menu-item">
+                                    <div class="c1">치즈 케이크</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>6,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">초콜릿 케이크</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>6,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">레드 벨벳 케이크</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>7,000</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">티라미수</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>6,500</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">샌드위치 & 샐러드</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">가격</div>
+                                </div>
+                                <div class="spacer-half"></div>
+                                <div class="menu-item">
+                                    <div class="c1">에그 마요 샌드위치</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>6,200</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">햄 앤 치즈 샌드위치</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>6,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">치킨 샐러드</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>8,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">로메인 그린 샐러드</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>7,800</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 item">
+                            <div class="menu-wrap">
+                                <div class="menu-item thead">
+                                    <div class="c1">따뜻한 푸드</div>
+                                    <div class="c2"></div>
+                                    <div class="c3">가격</div>
+                                </div>
+                                <div class="spacer-half"></div>
+                                <div class="menu-item">
+                                    <div class="c1">베이컨 치즈 토스트</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>5,800</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">스모크드 치킨 파니니</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>7,500</div>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="c1">그릴드 치즈 토마토 파니니</div>
+                                    <div class="c2"></div>
+                                    <div class="c3"><span class="cur">₩</span>7,200</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Location Section -->
+            <section id="section-location" aria-label="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="icon_pin_alt fontsize48 id-color mb20"></i>
+                            <h3>Location</h3>
+                            08 W 36th St, New York, NY 10001
+                        </div>
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="icon_mug fontsize48 id-color mb20"></i>
+                            <h3>We're Open</h3>
+                            Weekdays 08:00 - 22:00. Weekends 08:00 - 24:00.
+                        </div>
+                        <div class="col-md-4 mb-sm-30 text-center">
+                            <i class="icon_mail_alt fontsize48 id-color mb20"></i>
+                            <h3>Contact Us</h3>
+                            P: +1 333 1000 2000. E: contact@example.com.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Back to Top -->
+        <a href="#" id="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+
+        <!-- Footer Placeholder (컴포넌트로 로드됨) -->
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Bootstrap Carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselElement = document.querySelector('#starbucks-carousel');
+            if (carouselElement) {
+                const carousel = new bootstrap.Carousel(carouselElement, {
+                    interval: 5000,
+                    wrap: true,
+                    keyboard: true
+                });
+            }
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
+        });
+
+        // Back to top button scroll effect (헤더 스크롤 효과는 load-components.js에서 처리)
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                if (window.scrollY > 100) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            }
+        });
+
+        // Counter animation
+        function animateCounter() {
+            const counters = document.querySelectorAll('.timer');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-to'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const counterSection = document.querySelector('#section-specials');
+        if (counterSection) {
+            observer.observe(counterSection);
+        }
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // FadeScroll functionality for mouse icon
+        function handleFadeScroll() {
+            const fadeScrollElements = document.querySelectorAll('.fadeScroll');
+            fadeScrollElements.forEach(function(element) {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementHeight = element.offsetHeight;
+                const scrollPercent = (elementHeight - window.scrollY) / elementHeight;
+                
+                if (scrollPercent >= 0 && elementTop < window.innerHeight) {
+                    element.style.opacity = Math.max(0, Math.min(1, scrollPercent));
+                } else if (elementTop >= window.innerHeight) {
+                    element.style.opacity = 1;
+                } else {
+                    element.style.opacity = 0;
+                }
+            });
+        }
+
+        // Initialize fadeScroll on load and scroll
+        window.addEventListener('load', handleFadeScroll);
+        window.addEventListener('scroll', handleFadeScroll);
+        handleFadeScroll(); // Run once immediately
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --starbucks-green: #00704A;
+    --starbucks-light-green: #1E3932;
+    --starbucks-gold: #D4AF37;
+    --starbucks-cream: #F7F7F7;
+    --starbucks-dark: #1E3932;
+    --body-font: "Lato", Helvetica, Arial, sans-serif;
+    --title-font: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color: #333;
+    font-family: var(--body-font);
+}
+
+/* Header Styles */
+.starbucks-header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.starbucks-logo {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.starbucks-logo:hover {
+    transform: scale(1.05);
+}
+
+.starbucks-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.starbucks-nav li {
+    margin: 0 20px;
+}
+
+.starbucks-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s;
+    font-family: var(--title-font);
+}
+
+.starbucks-nav a:hover {
+    color: var(--starbucks-green);
+}
+
+/* Hero Section */
+.menu-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3') center/cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.menu-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+}
+
+/* Menu Categories */
+.menu-categories {
+    background-color: var(--starbucks-cream);
+    padding: 20px 0;
+    position: sticky;
+    top: 80px;
+    z-index: 999;
+}
+
+.category-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-btn {
+    background: white;
+    border: 2px solid var(--starbucks-green);
+    color: var(--starbucks-green);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-family: var(--title-font);
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: var(--starbucks-green);
+    color: white;
+    text-decoration: none;
+}
+
+/* Menu Grid */
+.menu-section {
+    padding: 80px 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.menu-card-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(45deg, var(--starbucks-green), var(--starbucks-light-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    position: relative;
+}
+
+.menu-card-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.menu-card h4 {
+    color: var(--starbucks-green);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--title-font);
+}
+
+.menu-card-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.menu-card-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--starbucks-green);
+    margin-bottom: 15px;
+}
+
+.menu-card-nutrition {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.menu-card-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.order-btn {
+    background: var(--starbucks-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-family: var(--title-font);
+}
+
+.order-btn:hover {
+    background: var(--starbucks-light-green);
+    color: white;
+}
+
+/* Category Sections */
+.category-section {
+    margin-bottom: 80px;
+}
+
+.category-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-title h2 {
+    color: var(--starbucks-green);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--title-font);
+}
+
+.category-title p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer-starbucks {
+    background-color: var(--starbucks-dark);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .category-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+

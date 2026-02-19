@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>회원가입 - Starbucks Korea - 스타벅스 코리아</title>
+    <link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="스타벅스 코리아 회원가입" name="description" />
+    <meta content="스타벅스, 회원가입, 가입" name="keywords" />
+    <meta content="Starbucks Korea" name="author" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Component Loader -->
+    <script src="js/load-components.js" defer></script>
+</head> 
+
+<body>
+    <div id="wrapper">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="preloader1"></div>
+        </div>
+
+        <!-- Header Placeholder (컴포넌트로 로드됨) -->
+        <div id="header-placeholder"></div>
+
+        <!-- Content -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            
+            <!-- Join Section -->
+            <section class="join-section pt100 pb100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-7">
+                            <div class="join-box" data-aos="fade-up">
+                                <div class="join-header text-center mb-5">
+                                    <h2 class="join-title">회원가입</h2>
+                                    <p class="join-subtitle">스타벅스 코리아 회원이 되어 특별한 혜택을 누려보세요</p>
+                                </div>
+
+                                <form id="joinForm" class="join-form">
+                                    <!-- 약관 동의 섹션 -->
+                                    <div class="terms-section mb-4">
+                                        <h5 class="section-title mb-3">약관 동의</h5>
+                                        
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="termsAll" name="termsAll">
+                                            <label class="form-check-label fw-bold" for="termsAll">
+                                                전체 동의
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input terms-check" type="checkbox" id="termsService" name="termsService" required>
+                                            <label class="form-check-label" for="termsService">
+                                                홈페이지 이용약관 동의 <span class="text-danger">(필수)</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input terms-check" type="checkbox" id="termsPrivacy" name="termsPrivacy" required>
+                                            <label class="form-check-label" for="termsPrivacy">
+                                                개인정보 수집 및 이용동의 <span class="text-danger">(필수)</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input terms-check" type="checkbox" id="termsCard" name="termsCard" required>
+                                            <label class="form-check-label" for="termsCard">
+                                                스타벅스 카드 이용약관 <span class="text-danger">(필수)</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input terms-check" type="checkbox" id="termsMarketing" name="termsMarketing">
+                                            <label class="form-check-label" for="termsMarketing">
+                                                마케팅 활용 수집·이용 동의 <span class="text-muted">(선택)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <!-- 회원 정보 입력 섹션 -->
+                                    <div class="info-section">
+                                        <h5 class="section-title mb-3">회원 정보</h5>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="joinName" class="form-label">이름 <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="joinName" name="name" placeholder="이름을 입력하세요" required>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="joinEmail" class="form-label">이메일 주소 <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control" id="joinEmail" name="email" placeholder="이메일 주소를 입력하세요" required>
+                                                    <button type="button" class="btn btn-outline-secondary" id="checkEmailBtn">중복확인</button>
+                                                </div>
+                                                <div id="emailCheckResult" class="mt-1"></div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="joinPassword" class="form-label">비밀번호 <span class="text-danger">*</span></label>
+                                                <div class="password-input-wrapper">
+                                                    <input type="password" class="form-control" id="joinPassword" name="password" placeholder="비밀번호를 입력하세요" required>
+                                                    <button type="button" class="password-toggle" id="joinPasswordToggle">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                                <small class="form-text text-muted">8자 이상, 영문, 숫자, 특수문자 조합</small>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="joinPasswordConfirm" class="form-label">비밀번호 확인 <span class="text-danger">*</span></label>
+                                                <div class="password-input-wrapper">
+                                                    <input type="password" class="form-control" id="joinPasswordConfirm" name="passwordConfirm" placeholder="비밀번호를 다시 입력하세요" required>
+                                                    <button type="button" class="password-toggle" id="joinPasswordConfirmToggle">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                                <div id="passwordMatchResult" class="mt-1"></div>
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="joinAddress" class="form-label">주소</label>
+                                                <input type="text" class="form-control" id="joinAddress" name="address" placeholder="주소를 입력하세요 (선택사항)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="joinError" class="alert alert-danger mt-3" style="display: none;"></div>
+                                    <div id="joinSuccess" class="alert alert-success mt-3" style="display: none;"></div>
+
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn btn-join btn-lg px-5">
+                                            회원가입
+                                        </button>
+                                    </div>
+
+                                    <div class="text-center mt-3">
+                                        <p class="text-muted">
+                                            이미 회원이신가요? <a href="login.html" class="login-link">로그인</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- content close -->
+
+        <!-- Footer Placeholder (컴포넌트로 로드됨) -->
+        <div id="footer-placeholder"></div>
+
+        <!-- Back to Top -->
+        <a href="#" id="back-to-top"></a>
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Password toggle
+        const passwordToggles = [
+            { btn: document.getElementById('joinPasswordToggle'), input: document.getElementById('joinPassword') },
+            { btn: document.getElementById('joinPasswordConfirmToggle'), input: document.getElementById('joinPasswordConfirm') }
+        ];
+
+        passwordToggles.forEach(({ btn, input }) => {
+            if (btn && input) {
+                btn.addEventListener('click', function() {
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-eye');
+                    icon.classList.toggle('fa-eye-slash');
+                });
+            }
+        });
+
+        // 전체 동의 체크박스
+        const termsAll = document.getElementById('termsAll');
+        const termsChecks = document.querySelectorAll('.terms-check');
+        
+        if (termsAll) {
+            termsAll.addEventListener('change', function() {
+                termsChecks.forEach(check => {
+                    check.checked = this.checked;
+                });
+            });
+        }
+
+        // 개별 체크박스 변경 시 전체 동의 업데이트
+        termsChecks.forEach(check => {
+            check.addEventListener('change', function() {
+                const allChecked = Array.from(termsChecks).every(c => c.checked);
+                if (termsAll) {
+                    termsAll.checked = allChecked;
+                }
+            });
+        });
+
+        // 이메일 중복 확인
+        const checkEmailBtn = document.getElementById('checkEmailBtn');
+        const joinEmail = document.getElementById('joinEmail');
+        const emailCheckResult = document.getElementById('emailCheckResult');
+        let emailChecked = false;
+
+        if (checkEmailBtn && joinEmail) {
+            checkEmailBtn.addEventListener('click', async function() {
+                const email = joinEmail.value;
+                
+                if (!email) {
+                    emailCheckResult.innerHTML = '<small class="text-danger">이메일을 입력해주세요.</small>';
+                    emailChecked = false;
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`http://localhost:3000/api/auth/check-email?email=${encodeURIComponent(email)}`);
+                    const data = await response.json();
+                    
+                    if (response.ok && !data.exists) {
+                        emailCheckResult.innerHTML = '<small class="text-success"><i class="fas fa-check"></i> 사용 가능한 이메일입니다.</small>';
+                        emailChecked = true;
+                    } else {
+                        emailCheckResult.innerHTML = '<small class="text-danger"><i class="fas fa-times"></i> 이미 사용 중인 이메일입니다.</small>';
+                        emailChecked = false;
+                    }
+                } catch (error) {
+                    emailCheckResult.innerHTML = '<small class="text-danger">서버 오류가 발생했습니다.</small>';
+                    emailChecked = false;
+                    console.error('Email check error:', error);
+                }
+            });
+
+            // 이메일 변경 시 중복 확인 초기화
+            joinEmail.addEventListener('input', function() {
+                emailChecked = false;
+                emailCheckResult.innerHTML = '';
+            });
+        }
+
+        // 비밀번호 일치 확인
+        const joinPassword = document.getElementById('joinPassword');
+        const joinPasswordConfirm = document.getElementById('joinPasswordConfirm');
+        const passwordMatchResult = document.getElementById('passwordMatchResult');
+
+        if (joinPassword && joinPasswordConfirm && passwordMatchResult) {
+            function checkPasswordMatch() {
+                if (joinPasswordConfirm.value) {
+                    if (joinPassword.value === joinPasswordConfirm.value) {
+                        passwordMatchResult.innerHTML = '<small class="text-success"><i class="fas fa-check"></i> 비밀번호가 일치합니다.</small>';
+                    } else {
+                        passwordMatchResult.innerHTML = '<small class="text-danger"><i class="fas fa-times"></i> 비밀번호가 일치하지 않습니다.</small>';
+                    }
+                } else {
+                    passwordMatchResult.innerHTML = '';
+                }
+            }
+
+            joinPassword.addEventListener('input', checkPasswordMatch);
+            joinPasswordConfirm.addEventListener('input', checkPasswordMatch);
+        }
+
+        // 회원가입 폼 제출
+        const joinForm = document.getElementById('joinForm');
+        if (joinForm) {
+            joinForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const errorDiv = document.getElementById('joinError');
+                const successDiv = document.getElementById('joinSuccess');
+                
+                // Hide previous messages
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+
+                // 이메일 중복 확인 체크
+                if (!emailChecked && joinEmail.value) {
+                    errorDiv.textContent = '이메일 중복 확인을 해주세요.';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                // 비밀번호 일치 확인
+                if (joinPassword.value !== joinPasswordConfirm.value) {
+                    errorDiv.textContent = '비밀번호가 일치하지 않습니다.';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                const formData = {
+                    name: document.getElementById('joinName').value,
+                    email: document.getElementById('joinEmail').value,
+                    password: document.getElementById('joinPassword').value,
+                    address: document.getElementById('joinAddress').value || null
+                };
+                
+                try {
+                    const response = await fetch('http://localhost:3000/api/auth/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        successDiv.textContent = '회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.';
+                        successDiv.style.display = 'block';
+                        
+                        // Redirect to login page after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                    } else {
+                        errorDiv.textContent = data.message || '회원가입에 실패했습니다. 다시 시도해주세요.';
+                        errorDiv.style.display = 'block';
+                    }
+                } catch (error) {
+                    errorDiv.textContent = '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+                    errorDiv.style.display = 'block';
+                    console.error('Join error:', error);
+                }
+            });
+        }
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
+

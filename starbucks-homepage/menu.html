@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Starbucks Korea - 메뉴</title>
+    <link rel="icon" href="https://www.starbucks.co.kr/common/img/common/favicon.ico" type="image/x-icon">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="스타벅스 코리아 메뉴 - 음료, 푸드, 상품" name="description" />
+    <meta content="스타벅스, 메뉴, 음료, 커피, 프라푸치노, 라떼" name="keywords" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/menu-style.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Component Loader -->
+    <script src="js/load-components.js" defer></script>
+</head> 
+
+</head>
+
+<body>
+    <!-- Header Placeholder (컴포넌트로 로드됨) -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1 class="fade-in">Our Menu</h1>
+            <p class="fade-in">스타벅스의 다양한 메뉴를 만나보세요</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories Navigation -->
+    <section class="menu-categories">
+        <div class="container">
+            <div class="category-nav">
+                <a href="#drinks" class="category-btn active">음료</a>
+                <a href="#food" class="category-btn">푸드</a>
+                <a href="#products" class="category-btn">상품</a>
+                <a href="#cards" class="category-btn">카드</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Content -->
+    <div class="container menu-section">
+        
+        <!-- 음료 섹션 -->
+        <section id="drinks" class="category-section">
+            <div class="category-title fade-in">
+                <h2>음료</h2>
+                <p>스타벅스의 시그니처 음료를 만나보세요</p>
+            </div>
+
+            <!-- 에스프레소 -->
+            <div class="mb-5">
+                <h3 class="mb-4 text-center" style="color: var(--starbucks-green);">에스프레소</h3>
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-mug-hot"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>아메리카노</h4>
+                            <div class="menu-card-description">진한 에스프레소와 뜨거운 물의 완벽한 조화</div>
+                            <div class="menu-card-price">4,100원</div>
+                            <div class="menu-card-nutrition">칼로리: 10kcal | 카페인: 150mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-coffee"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>카페 라떼</h4>
+                            <div class="menu-card-description">부드러운 스팀 밀크와 에스프레소의 조화</div>
+                            <div class="menu-card-price">4,600원</div>
+                            <div class="menu-card-nutrition">칼로리: 190kcal | 카페인: 150mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-heart"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>카푸치노</h4>
+                            <div class="menu-card-description">진한 에스프레소와 풍성한 우유 거품</div>
+                            <div class="menu-card-price">4,600원</div>
+                            <div class="menu-card-nutrition">칼로리: 110kcal | 카페인: 150mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-candy-cane"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>카페 모카</h4>
+                            <div class="menu-card-description">달콤한 초콜릿과 에스프레소의 만남</div>
+                            <div class="menu-card-price">5,100원</div>
+                            <div class="menu-card-nutrition">칼로리: 290kcal | 카페인: 150mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프라푸치노 -->
+            <div class="mb-5">
+                <h3 class="mb-4 text-center" style="color: var(--starbucks-green);">프라푸치노</h3>
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-glass-whiskey"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>자바 칩 프라푸치노</h4>
+                            <div class="menu-card-description">달콤한 초콜릿 칩이 들어간 시원한 음료</div>
+                            <div class="menu-card-price">5,700원</div>
+                            <div class="menu-card-nutrition">칼로리: 340kcal | 카페인: 100mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-ice-cream"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>카라멜 프라푸치노</h4>
+                            <div class="menu-card-description">부드러운 카라멜의 달콤함</div>
+                            <div class="menu-card-price">5,400원</div>
+                            <div class="menu-card-nutrition">칼로리: 300kcal | 카페인: 90mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-cookie-bite"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>쿠키 앤 크림 프라푸치노</h4>
+                            <div class="menu-card-description">바삭한 쿠키와 부드러운 크림</div>
+                            <div class="menu-card-price">5,900원</div>
+                            <div class="menu-card-nutrition">칼로리: 380kcal | 카페인: 70mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 콜드 브루 -->
+            <div class="mb-5">
+                <h3 class="mb-4 text-center" style="color: var(--starbucks-green);">콜드 브루</h3>
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-tint"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>콜드 브루</h4>
+                            <div class="menu-card-description">14시간 저온 추출한 부드러운 커피</div>
+                            <div class="menu-card-price">4,400원</div>
+                            <div class="menu-card-nutrition">칼로리: 5kcal | 카페인: 155mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-glass-martini"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>바닐라 크림 콜드 브루</h4>
+                            <div class="menu-card-description">부드러운 바닐라 크림과 콜드 브루</div>
+                            <div class="menu-card-price">5,100원</div>
+                            <div class="menu-card-nutrition">칼로리: 110kcal | 카페인: 155mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 티 -->
+            <div class="mb-5">
+                <h3 class="mb-4 text-center" style="color: var(--starbucks-green);">티(티바나)</h3>
+                <div class="menu-grid">
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-leaf"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>얼 그레이 티</h4>
+                            <div class="menu-card-description">베르가못 향이 은은한 클래식 티</div>
+                            <div class="menu-card-price">4,100원</div>
+                            <div class="menu-card-nutrition">칼로리: 0kcal | 카페인: 40mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card fade-in">
+                        <div class="menu-card-image">
+                            <i class="fas fa-spa"></i>
+                            <div class="menu-card-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        <div class="menu-card-content">
+                            <h4>캐모마일 티</h4>
+                            <div class="menu-card-description">편안한 휴식을 위한 허브 티</div>
+                            <div class="menu-card-price">4,100원</div>
+                            <div class="menu-card-nutrition">칼로리: 0kcal | 카페인: 0mg</div>
+                            <button class="order-btn">주문하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 푸드 섹션 -->
+        <section id="food" class="category-section">
+            <div class="category-title fade-in">
+                <h2>푸드</h2>
+                <p>신선하고 맛있는 스타벅스 푸드</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>크루아상</h4>
+                        <div class="menu-card-description">바삭하고 부드러운 프랑스식 크루아상</div>
+                        <div class="menu-card-price">3,000원</div>
+                        <div class="menu-card-nutrition">칼로리: 280kcal</div>
+                        <button class="order-btn">주문하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>뉴욕 치즈케이크</h4>
+                        <div class="menu-card-description">진한 크림치즈의 부드러운 케이크</div>
+                        <div class="menu-card-price">5,500원</div>
+                        <div class="menu-card-nutrition">칼로리: 350kcal</div>
+                        <button class="order-btn">주문하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>치킨 샐러드 샌드위치</h4>
+                        <div class="menu-card-description">신선한 야채와 치킨의 조화</div>
+                        <div class="menu-card-price">6,500원</div>
+                        <div class="menu-card-nutrition">칼로리: 420kcal</div>
+                        <button class="order-btn">주문하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>초콜릿 칩 쿠키</h4>
+                        <div class="menu-card-description">바삭한 쿠키 속 달콤한 초콜릿 칩</div>
+                        <div class="menu-card-price">2,500원</div>
+                        <div class="menu-card-nutrition">칼로리: 180kcal</div>
+                        <button class="order-btn">주문하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 상품 섹션 -->
+        <section id="products" class="category-section">
+            <div class="category-title fade-in">
+                <h2>상품</h2>
+                <p>스타벅스의 특별한 상품들</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>스타벅스 머그컵</h4>
+                        <div class="menu-card-description">클래식한 스타벅스 로고 머그컵</div>
+                        <div class="menu-card-price">15,000원</div>
+                        <button class="order-btn">구매하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>스테인리스 텀블러</h4>
+                        <div class="menu-card-description">보온/보냉 기능의 스테인리스 텀블러</div>
+                        <div class="menu-card-price">25,000원</div>
+                        <button class="order-btn">구매하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>원두 - 파이크 플레이스 로스트</h4>
+                        <div class="menu-card-description">스타벅스 시그니처 원두</div>
+                        <div class="menu-card-price">12,000원</div>
+                        <button class="order-btn">구매하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 카드 섹션 -->
+        <section id="cards" class="category-section">
+            <div class="category-title fade-in">
+                <h2>카드</h2>
+                <p>스타벅스 리워드와 함께하는 카드</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>스타벅스 카드</h4>
+                        <div class="menu-card-description">리워드 혜택을 받을 수 있는 스타벅스 카드</div>
+                        <div class="menu-card-price">0원</div>
+                        <button class="order-btn">등록하기</button>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in">
+                    <div class="menu-card-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="menu-card-content">
+                        <h4>모바일 카드</h4>
+                        <div class="menu-card-description">스마트폰으로 편리하게 사용하는 모바일 카드</div>
+                        <div class="menu-card-price">0원</div>
+                        <button class="order-btn">등록하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scrolling for category navigation
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Scroll to target section
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 160; // Account for sticky header
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.starbucks-header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'white';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Order button functionality
+        document.querySelectorAll('.order-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const itemName = this.closest('.menu-card').querySelector('h4').textContent;
+                alert(`${itemName}을(를) 주문하시겠습니까?\n\n실제 주문 기능은 구현되지 않았습니다.`);
+            });
+        });
+    </script>
+
+    <!-- Footer Placeholder (컴포넌트로 로드됨) -->
+    <div id="footer-placeholder"></div>
+</body>
+
+</html>

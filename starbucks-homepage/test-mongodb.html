@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB 연결 테스트 - 스타벅스</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #00704A 0%, #228B22 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #333;
+        }
+        
+        h1 {
+            color: #00704A;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+        
+        .details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #00704A;
+        }
+        
+        .details pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 0;
+        }
+        
+        button {
+            background: #00704A;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #005238;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo::before {
+            content: "☕";
+            font-size: 3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 112, 74, 0.05);
+        }
+        
+        .section h3 {
+            color: #00704A;
+            margin-top: 0;
+        }
+        
+        .endpoint-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .endpoint-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #00704A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>🚀 스타벅스 MongoDB 연결 테스트</h1>
+        
+        <div class="section">
+            <h3>📊 서버 상태 확인</h3>
+            <button onclick="checkHealth()">헬스 체크 실행</button>
+            <button onclick="checkAPI()">API 정보 확인</button>
+            <button onclick="startServer()">서버 시작 시도</button>
+            <div id="status" class="status loading">대기 중... 버튼을 클릭해서 테스트를 시작하세요</div>
+            <div id="details" class="details" style="display: none;">
+                <pre id="response"></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>🔗 테스트 엔드포인트</h3>
+            <ul class="endpoint-list">
+                <li><strong>헬스 체크:</strong> GET /api/health</li>
+                <li><strong>API 정보:</strong> GET /api</li>
+                <li><strong>메인 페이지:</strong> GET /</li>
+                <li><strong>회원가입:</strong> POST /api/auth/register</li>
+                <li><strong>로그인:</strong> POST /api/auth/login</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h3>📋 연결 시나리오</h3>
+            <p><strong>우선순위 1:</strong> 🌐 MongoDB Atlas (클라우드)</p>
+            <p><strong>우선순위 2:</strong> 🏠 로컬 MongoDB (Atlas 실패 시)</p>
+            <p><strong>자동 폴백:</strong> 🔄 Atlas → 로컬 자동 전환</p>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:3000';
+        
+        function updateStatus(message, type = 'loading') {
+            const status = document.getElementById('status');
+            const details = document.getElementById('details');
+            const response = document.getElementById('response');
+            
+            status.textContent = message;
+            status.className = `status ${type}`;
+            
+            if (type === 'success' || type === 'error') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+        
+        function showResponse(data) {
+            const response = document.getElementById('response');
+            response.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        async function checkHealth() {
+            updateStatus('🔄 서버 헬스 체크 중...', 'loading');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    timeout: 10000
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.database && data.database.connected) {
+                        updateStatus(`✅ MongoDB 연결 성공! (${data.database.type})`, 'success');
+                    } else {
+                        updateStatus('⚠️ 서버는 작동하지만 MongoDB 연결 실패', 'error');
+                    }
+                    
+                    showResponse(data);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+            } catch (error) {
+                updateStatus(`❌ 연결 실패: ${error.message}`, 'error');
+                showResponse({ error: error.message, timestamp: new Date().toISOString() });
+            }
+        }
+        
+        async function checkAPI() {
+            updateStatus('🔄 API 정보 확인 중...', 'loading');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    updateStatus('✅ API 서버 정상 작동', 'success');
+                    showResponse(data);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+            } catch (error) {
+                updateStatus(`❌ API 연결 실패: ${error.message}`, 'error');
+                showResponse({ error: error.message, timestamp: new Date().toISOString() });
+            }
+        }
+        
+        async function startServer() {
+            updateStatus('🚀 서버 시작 시도...', 'loading');
+            
+            // 서버가 이미 실행 중인지 확인
+            try {
+                const healthCheck = await fetch(`${BASE_URL}/api/health`);
+                if (healthCheck.ok) {
+                    updateStatus('✅ 서버가 이미 실행 중입니다!', 'success');
+                    const data = await healthCheck.json();
+                    showResponse(data);
+                    return;
+                }
+            } catch {
+                // 서버가 실행되지 않음 - 계속 진행
+            }
+            
+            updateStatus('⚠️ 서버가 실행되지 않았습니다. PowerShell에서 다음 명령어를 실행하세요:\n\ncd starbucks-homepage\nnode server/app.js', 'error');
+            
+            showResponse({
+                message: "서버를 수동으로 시작해주세요",
+                commands: [
+                    "cd C:\\Users\\Rosa's\\Desktop\\BoostWeb\\Template\\Stradale\\starbucks-homepage",
+                    "node server/app.js"
+                ],
+                note: "서버가 시작되면 이 페이지에서 '헬스 체크 실행' 버튼을 클릭하세요"
+            });
+        }
+        
+        // 페이지 로드 시 자동으로 헬스 체크 시도
+        setTimeout(() => {
+            checkHealth();
+        }, 1000);
+    </script>
+</body>
+</html>

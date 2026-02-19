@@ -1,0 +1,56 @@
+{
+  "name": "starbucks-homepage",
+  "version": "1.0.0",
+  "description": "스타벅스 코리아 홈페이지 클론 - 반응형 웹사이트",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "server": "node server/app.js",
+    "server:dev": "nodemon server/app.js",
+    "static": "npx http-server -p 8000 -o",
+    "frontend": "npx http-server -p 8000 -o",
+    "build": "echo 'Starbucks Homepage - No build process needed'",
+    "test": "echo 'No tests specified yet'",
+    "health": "curl -s http://localhost:3000/api/health | json_pp || curl -s http://localhost:3000/api/health"
+  },
+  "keywords": [
+    "starbucks",
+    "homepage",
+    "clone",
+    "responsive",
+    "html",
+    "css",
+    "javascript",
+    "bootstrap",
+    "coffee",
+    "website"
+  ],
+  "author": "Rosa (binbinrosa-ui)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binbinrosa-ui/Boostweb_Starbucks.git"
+  },
+  "homepage": "https://binbinrosa-ui.github.io/Boostweb_Starbucks",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^7.8.8"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

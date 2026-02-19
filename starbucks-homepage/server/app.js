@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-require('dotenv').config();
+// 환경변수는 index.js에서 로드됨
 
 // 스마트 MongoDB 연결 모듈 import
 const { connect, getConnectionInfo } = require('./database');
@@ -74,35 +74,64 @@ app.get('/api/db-status', async (req, res) => {
     }
 });
 
-// 헬스 체크 엔드포인트
+// 헬스 체크 엔드포인트 (DB 연결 상태와 무관하게 작동)
 app.get('/api/health', (req, res) => {
-    const info = getConnectionInfo();
-    res.json({
-        success: true,
-        status: 'healthy',
-        timestamp: new Date().toISOString(),
-        server: {
-            environment: process.env.NODE_ENV || 'development',
-            port: process.env.PORT || 3000,
-            uptime: process.uptime()
-        },
-        database: {
-            connected: info.isConnected,
-            name: info.database,
-            readyState: info.readyState,
-            type: info.connectionString.includes('mongodb+srv') ? 'MongoDB Atlas (클라우드)' : '로컬 MongoDB'
-        }
-    });
+    try {
+        const info = getConnectionInfo();
+        res.json({
+            success: true,
+            status: 'healthy',
+            timestamp: new Date().toISOString(),
+            server: {
+                environment: process.env.NODE_ENV || 'development',
+                port: process.env.PORT || 3000,
+                uptime: process.uptime()
+            },
+            database: info ? {
+                connected: info.isConnected,
+                name: info.database || 'unknown',
+                readyState: info.readyState,
+                type: info.connectionString && info.connectionString.includes('mongodb+srv') ? 'MongoDB Atlas (클라우드)' : '로컬 MongoDB'
+            } : {
+                connected: false,
+                status: 'not_initialized'
+            }
+        });
+    } catch (error) {
+        // DB 연결 정보를 가져올 수 없어도 서버는 정상
+        res.json({
+            success: true,
+            status: 'healthy',
+            timestamp: new Date().toISOString(),
+            server: {
+                environment: process.env.NODE_ENV || 'development',
+                port: process.env.PORT || 3000,
+                uptime: process.uptime()
+            },
+            database: {
+                connected: false,
+                status: 'connection_info_unavailable'
+            }
+        });
+    }
 });
 
-// API 상태 엔드포인트
+// 기본 라우트 - 메인 페이지
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
+
+// API 기본 응답 (연결 테스트용)
 app.get('/api', (req, res) => {
     res.json({
         success: true,
         message: 'Starbucks Korea API Server',
         version: '1.0.0',
+        status: 'running',
+        timestamp: new Date().toISOString(),
         endpoints: {
             health: '/api/health',
+            dbStatus: '/api/db-status',
             auth: {
                 register: 'POST /api/auth/register',
                 login: 'POST /api/auth/login',
@@ -110,11 +139,6 @@ app.get('/api', (req, res) => {
             }
         }
     });
-});
-
-// 기본 라우트 - 메인 페이지
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // 에러 핸들링 미들웨어

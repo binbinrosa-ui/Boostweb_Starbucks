@@ -1,0 +1,6 @@
+{
+  "buildCommand": "echo 'Static site build complete'",
+  "outputDirectory": "./starbucks-homepage",
+  "cleanUrls": true,
+  "trailingSlash": false
+}

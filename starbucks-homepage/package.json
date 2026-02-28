@@ -34,12 +34,9 @@
   },
   "homepage": "https://binbinrosa-ui.github.io/Boostweb_Starbucks",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
-    "express": "^4.22.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^7.8.8"
+    "express": "^4.22.1"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

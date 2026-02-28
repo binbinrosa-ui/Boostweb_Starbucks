@@ -110,12 +110,6 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-                
-                <a href="#section-welcome" class="mouse-icon-click scroll-to" data-aos="fade-up" data-aos-delay="2s">
-                    <span class="mouse fadeScroll relative" data-scroll-speed="2">
-                        <span class="scroll"></span>
-                    </span>
-                </a>
             </div>
 
             <!-- Welcome Section -->
@@ -657,29 +651,13 @@
             });
         }
 
-        // FadeScroll functionality for mouse icon
-        function handleFadeScroll() {
-            const fadeScrollElements = document.querySelectorAll('.fadeScroll');
-            fadeScrollElements.forEach(function(element) {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementHeight = element.offsetHeight;
-                const scrollPercent = (elementHeight - window.scrollY) / elementHeight;
-                
-                if (scrollPercent >= 0 && elementTop < window.innerHeight) {
-                    element.style.opacity = Math.max(0, Math.min(1, scrollPercent));
-                } else if (elementTop >= window.innerHeight) {
-                    element.style.opacity = 1;
-                } else {
-                    element.style.opacity = 0;
-                }
-            });
-        }
-
-        // Initialize fadeScroll on load and scroll
-        window.addEventListener('load', handleFadeScroll);
-        window.addEventListener('scroll', handleFadeScroll);
-        handleFadeScroll(); // Run once immediately
     </script>
+
+    <!-- Firebase App Configuration -->
+    <script type="module" src="app.js"></script>
+    
+    <!-- Authentication State Management -->
+    <script type="module" src="js/auth-state.js"></script>
 </body>
 
 </html>

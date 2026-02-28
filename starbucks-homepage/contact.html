@@ -18,6 +18,92 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <style>
+        /* Contact Form 스타일 개선 */
+        .form-border {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--starbucks-dark);
+            margin-bottom: 8px;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--starbucks-green);
+            box-shadow: 0 0 0 0.2rem rgba(0, 112, 74, 0.25);
+        }
+        
+        .btn-main {
+            background-color: var(--starbucks-green);
+            border-color: var(--starbucks-green);
+            color: white;
+            font-weight: 600;
+            padding: 12px 40px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-main:hover {
+            background-color: var(--starbucks-light-green);
+            border-color: var(--starbucks-light-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 112, 74, 0.3);
+        }
+        
+        .btn-main:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .section-title {
+            color: var(--starbucks-dark);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: var(--title-font);
+        }
+        
+        .privacy-notice {
+            background: #f8f9fa;
+            border-left: 4px solid var(--starbucks-green);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
     <!-- Component Loader -->
     <script src="js/load-components.js" defer></script>
 </head> 
@@ -56,47 +142,65 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <form name="contactForm" id='contact_form' class="form-border" method="post">
+                            <div class="text-center mb-5">
+                                <h2 class="section-title" data-aos="fade-up">문의하기</h2>
+                                <p class="section-subtitle text-muted" data-aos="fade-up" data-aos-delay="100">
+                                    궁금한 점이나 문의사항이 있으시면 언제든지 연락주세요.<br>
+                                    소중한 의견을 기다리고 있습니다.
+                                </p>
+                            </div>
+                            <form name="contactForm" id='contact_form' class="form-border" method="post" data-aos="fade-up" data-aos-delay="200">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div id='name_error' class='error'>Please enter your name.</div>
-                                        <div>
-                                            <input type='text' name='Name' id='name' class="form-control" placeholder="Your Name" required>
+                                        <div class="form-group mb-3">
+                                            <label for="name" class="form-label">이름 <span class="text-danger">*</span></label>
+                                            <input type='text' name='Name' id='name' class="form-control" placeholder="이름을 입력하세요" required>
                                         </div>
 
-                                        <div id='email_error' class='error'>Please enter your valid E-mail ID.</div>
-                                        <div>
-                                            <input type='email' name='Email' id='email' class="form-control" placeholder="Your Email" required>
+                                        <div class="form-group mb-3">
+                                            <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>
+                                            <input type='email' name='Email' id='email' class="form-control" placeholder="이메일 주소를 입력하세요" required>
                                         </div>
 
-                                        <div id='phone_error' class='error'>Please enter your phone number.</div>
-                                        <div>
-                                            <input type='text' name='phone' id='phone' class="form-control" placeholder="Your Phone" required>
+                                        <div class="form-group mb-3">
+                                            <label for="phone" class="form-label">연락처 <span class="text-danger">*</span></label>
+                                            <input type='text' name='phone' id='phone' class="form-control" placeholder="연락처를 입력하세요" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div id='message_error' class='error'>Please enter your message.</div>
-                                        <div>
-                                            <textarea name='message' id='message' class="form-control" placeholder="Your Message" required></textarea>
+                                        <div class="form-group mb-3">
+                                            <label for="message" class="form-label">문의 내용 <span class="text-danger">*</span></label>
+                                            <textarea name='message' id='message' class="form-control" rows="8" placeholder="문의하실 내용을 자세히 입력해주세요" required></textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <p id='submit' class="mt20">
-                                            <input type='submit' id='send_message' value='Submit Form' class="btn btn-main">
-                                        </p>
-                                        <div id='mail_success' class='success'>Your message has been sent successfully.</div>
-                                        <div id='mail_fail' class='error'>Sorry, error occured this time sending your message.</div>
+                                        <!-- 개인정보 처리 안내 -->
+                                        <div class="privacy-notice mb-3">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <i class="fas fa-shield-alt text-success me-2"></i>
+                                                <strong>개인정보 처리 안내</strong>
+                                            </div>
+                                            <small>
+                                                • 입력하신 정보는 문의 처리를 위해 안전하게 저장됩니다<br>
+                                                • 수집된 정보: 이름, 이메일, 연락처, 문의내용, 접수시간<br>
+                                                • 문의 처리 완료 후 관련 법령에 따라 보관됩니다
+                                            </small>
+                                        </div>
+                                        
+                                        <div class="text-center">
+                                            <input type='submit' id='send_message' value='문의하기' class="btn btn-main btn-lg px-5">
+                                        </div>
+                                        
+                                        <div id='mail_success' class='success' style="display: none;">
+                                            <i class="fas fa-check-circle me-2"></i>문의사항이 성공적으로 전송되었습니다.
+                                        </div>
+                                        <div id='mail_fail' class='error' style="display: none;">
+                                            <i class="fas fa-exclamation-circle me-2"></i>문의 전송 중 오류가 발생했습니다. 다시 시도해주세요.
+                                        </div>
                                     </div>
                                 </div>
                             </form>
-
-                            <div id="success_message" class='success'>
-                                Your message has been sent successfully. Refresh this page if you want to send more messages.
-                            </div>
-                            <div id="error_message" class='error'>
-                                Sorry there was an error sending your form.
-                            </div>
                         </div>
                     </div>
                 </div>    
@@ -143,6 +247,11 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jarallax@2/dist/jarallax.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jarallax@2/dist/jarallax-video.min.js"></script>
+    
+    <!-- Firebase: Contact 폼 데이터를 Firestore에 저장 -->
+    <script type="module" src="app.js"></script>
+    <!-- 인증 상태 관리 -->
+    <script type="module" src="js/auth-state.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
@@ -189,6 +298,116 @@
                 }
             });
         });
+    </script>
+
+    <script type="module">
+        // Firebase Firestore에 Contact 폼 데이터 저장
+        import { 
+            db, 
+            collection, 
+            addDoc 
+        } from './app.js';
+
+        // Contact 폼 제출 처리
+        const contactForm = document.getElementById('contact_form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                console.log('📝 [Contact] 문의 폼 제출 시도');
+                
+                // 폼 데이터 수집
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    message: document.getElementById('message').value.trim(),
+                    timestamp: new Date(),
+                    status: '신규',
+                    ip: 'N/A', // 클라이언트에서는 실제 IP를 가져올 수 없음
+                    userAgent: navigator.userAgent
+                };
+                
+                // 입력 검증
+                if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+                    showError('모든 필수 항목을 입력해주세요.');
+                    return;
+                }
+                
+                // 이메일 형식 검증
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    showError('올바른 이메일 형식을 입력해주세요.');
+                    return;
+                }
+                
+                // 제출 버튼 상태 변경
+                const submitBtn = document.getElementById('send_message');
+                const originalValue = submitBtn.value;
+                submitBtn.value = '전송 중...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Firestore에 데이터 저장
+                    const docRef = await addDoc(collection(db, 'contacts'), formData);
+                    
+                    console.log('✅ [Contact] Firestore 저장 성공:', docRef.id);
+                    
+                    // 성공 메시지 표시
+                    showSuccess('문의사항이 성공적으로 전송되었습니다.');
+                    
+                    // 폼 초기화
+                    contactForm.reset();
+                    
+                } catch (error) {
+                    console.error('❌ [Contact] Firestore 저장 실패:', error);
+                    
+                    // 오류 메시지 표시
+                    showError('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+                    
+                } finally {
+                    // 제출 버튼 복원
+                    submitBtn.value = originalValue;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+        
+        // 성공 메시지 표시 함수
+        function showSuccess(message) {
+            const successDiv = document.getElementById('mail_success');
+            const errorDiv = document.getElementById('mail_fail');
+            
+            if (successDiv && errorDiv) {
+                errorDiv.style.display = 'none';
+                successDiv.innerHTML = `<i class="fas fa-check-circle me-2"></i>${message}`;
+                successDiv.style.display = 'block';
+                
+                // 5초 후 숨기기
+                setTimeout(() => {
+                    successDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // 오류 메시지 표시 함수
+        function showError(message) {
+            const successDiv = document.getElementById('mail_success');
+            const errorDiv = document.getElementById('mail_fail');
+            
+            if (successDiv && errorDiv) {
+                successDiv.style.display = 'none';
+                errorDiv.innerHTML = `<i class="fas fa-exclamation-circle me-2"></i>${message}`;
+                errorDiv.style.display = 'block';
+                
+                // 5초 후 숨기기
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        console.log('✅ [Contact] Contact 폼 Firebase 연동 초기화 완료');
     </script>
 </body>
 

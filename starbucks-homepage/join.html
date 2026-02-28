@@ -173,7 +173,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+    
+    <!-- Firebase: 회원가입 시 Authentication 생성 + Firestore에 입력 정보 저장 -->
+    <script type="module" src="app.js"></script>
+    <!-- 인증 상태 관리 -->
+    <script type="module" src="js/auth-state.js"></script>
+    
+    <script type="module">
         // Initialize AOS
         AOS.init({
             duration: 800,
@@ -238,20 +244,24 @@
                 }
 
                 try {
-                    const response = await fetch(`http://localhost:3000/api/auth/check-email?email=${encodeURIComponent(email)}`);
-                    const data = await response.json();
+                    // Firebase 이메일 중복 확인
+                    const { checkEmailExists } = await import('./js/firebase-auth.js');
+                    const result = await checkEmailExists(email);
                     
-                    if (response.ok && !data.exists) {
+                    if (result.success && !result.exists) {
                         emailCheckResult.innerHTML = '<small class="text-success"><i class="fas fa-check"></i> 사용 가능한 이메일입니다.</small>';
                         emailChecked = true;
-                    } else {
+                    } else if (result.success && result.exists) {
                         emailCheckResult.innerHTML = '<small class="text-danger"><i class="fas fa-times"></i> 이미 사용 중인 이메일입니다.</small>';
+                        emailChecked = false;
+                    } else {
+                        emailCheckResult.innerHTML = '<small class="text-danger">이메일 확인 중 오류가 발생했습니다.</small>';
                         emailChecked = false;
                     }
                 } catch (error) {
-                    emailCheckResult.innerHTML = '<small class="text-danger">서버 오류가 발생했습니다.</small>';
+                    emailCheckResult.innerHTML = '<small class="text-danger">네트워크 연결을 확인하고 다시 시도해주세요.</small>';
                     emailChecked = false;
-                    console.error('Email check error:', error);
+                    console.error('Firebase email check error:', error);
                 }
             });
 
@@ -312,39 +322,41 @@
                 }
 
                 const formData = {
-                    name: document.getElementById('joinName').value,
-                    email: document.getElementById('joinEmail').value,
+                    name: document.getElementById('joinName').value.trim(),
+                    email: document.getElementById('joinEmail').value.trim(),
                     password: document.getElementById('joinPassword').value,
-                    address: document.getElementById('joinAddress').value || null
+                    address: document.getElementById('joinAddress').value.trim() || ''
                 };
                 
                 try {
-                    const response = await fetch('http://localhost:3000/api/auth/register', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData)
-                    });
+                    // Firebase Authentication 계정 생성 + Firestore에 회원 정보 저장
+                    const { firebaseRegister } = await import('./js/firebase-auth.js');
+                    const result = await firebaseRegister(
+                        formData.email,
+                        formData.password,
+                        formData.name,
+                        formData.address
+                    );
                     
-                    const data = await response.json();
-                    
-                    if (response.ok) {
-                        successDiv.textContent = '회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.';
+                    if (result.success) {
+                        successDiv.textContent = result.message + ' 로그인 페이지로 이동합니다.';
                         successDiv.style.display = 'block';
                         
-                        // Redirect to login page after 2 seconds
+                        console.log('✅ [Firebase] 회원가입 성공:', result.user);
+                        
+                        // Redirect to login page after 3 seconds
                         setTimeout(() => {
                             window.location.href = 'login.html';
-                        }, 2000);
+                        }, 3000);
                     } else {
-                        errorDiv.textContent = data.message || '회원가입에 실패했습니다. 다시 시도해주세요.';
+                        errorDiv.textContent = result.message || '회원가입에 실패했습니다.';
                         errorDiv.style.display = 'block';
+                        console.error('❌ [Firebase] 회원가입 실패:', result.error);
                     }
                 } catch (error) {
-                    errorDiv.textContent = '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+                    errorDiv.textContent = '네트워크 연결을 확인하고 잠시 후 다시 시도해주세요.';
                     errorDiv.style.display = 'block';
-                    console.error('Join error:', error);
+                    console.error('Firebase registration error:', error);
                 }
             });
         }

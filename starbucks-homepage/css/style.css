@@ -1984,3 +1984,366 @@ footer .footer-links-bottom a:hover {
     }
 }
 
+/* ===========================
+   MYPAGE STYLES - 마이페이지
+   =========================== */
+
+/* 마이페이지 전체 섹션 */
+.mypage-section {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+/* 사이드바 스타일 */
+.mypage-sidebar {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    position: sticky;
+    top: 140px;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, var(--starbucks-green), var(--starbucks-light-green));
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+}
+
+.user-profile .profile-image {
+    margin-bottom: 15px;
+}
+
+.user-profile h5 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.user-profile p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 사이드바 메뉴 */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar-menu li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 18px 25px;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-menu li a i {
+    width: 20px;
+    margin-right: 12px;
+    color: var(--starbucks-green);
+}
+
+.sidebar-menu li:hover a,
+.sidebar-menu li.active a {
+    background-color: #f8f9fa;
+    color: var(--starbucks-green);
+    padding-left: 30px;
+}
+
+.sidebar-menu .logout-item a {
+    color: #dc3545;
+}
+
+.sidebar-menu .logout-item a i {
+    color: #dc3545;
+}
+
+.sidebar-menu .logout-item:hover a {
+    background-color: #f8d7da;
+    color: #dc3545;
+}
+
+/* 메인 콘텐츠 */
+.mypage-content {
+    display: none;
+}
+
+.mypage-content.active {
+    display: block;
+}
+
+.content-header {
+    margin-bottom: 30px;
+}
+
+.content-header h3 {
+    color: var(--starbucks-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--title-font);
+}
+
+.content-header p {
+    color: #666;
+    margin: 0;
+}
+
+/* 프로필 카드 */
+.profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+/* 폼 스타일 */
+.form-label {
+    font-weight: 600;
+    color: var(--starbucks-dark);
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--starbucks-green);
+    box-shadow: 0 0 0 0.2rem rgba(0, 112, 74, 0.25);
+}
+
+/* 비밀번호 입력 래퍼 */
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-input-wrapper .password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.password-input-wrapper .password-toggle:hover {
+    color: var(--starbucks-green);
+    background-color: rgba(0, 112, 74, 0.1);
+}
+
+/* 버튼 스타일 */
+.btn-success {
+    background-color: var(--starbucks-green);
+    border-color: var(--starbucks-green);
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: var(--starbucks-light-green);
+    border-color: var(--starbucks-light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 112, 74, 0.3);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* 리워드 아이템 */
+.reward-item {
+    background: linear-gradient(135deg, #f8f9fa, white);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.reward-item:hover {
+    border-color: var(--starbucks-green);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 112, 74, 0.15);
+}
+
+.reward-item .reward-icon {
+    margin-bottom: 15px;
+}
+
+.reward-item h5 {
+    color: var(--starbucks-dark);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.reward-item h3 {
+    color: var(--starbucks-green);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* 빈 상태 스타일 */
+.empty-state {
+    padding: 60px 20px;
+}
+
+.empty-state i {
+    margin-bottom: 20px;
+}
+
+.empty-state h5 {
+    color: var(--starbucks-dark);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* 모달 스타일 */
+.modal-header {
+    border-bottom: 2px solid #f0f0f0;
+    padding: 20px 25px;
+}
+
+.modal-title {
+    font-weight: 700;
+    font-family: var(--title-font);
+}
+
+.modal-body {
+    padding: 25px;
+    font-size: 16px;
+}
+
+.modal-footer {
+    border-top: 2px solid #f0f0f0;
+    padding: 20px 25px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .mypage-section {
+        padding-top: 100px;
+    }
+    
+    .mypage-sidebar {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .sidebar-header {
+        padding: 25px 15px;
+    }
+    
+    .sidebar-menu li a {
+        padding: 15px 20px;
+    }
+    
+    .profile-card {
+        padding: 25px;
+    }
+    
+    .content-header h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .reward-item {
+        margin-bottom: 20px;
+    }
+    
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+/* 애니메이션 효과 */
+.mypage-content {
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 로딩 상태 */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--starbucks-green);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+

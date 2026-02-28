@@ -13,9 +13,10 @@
 
 ### 🚀 백엔드
 - **RESTful API** - Express.js 기반 서버
-- **MongoDB Atlas** - 클라우드 데이터베이스 연동
-- **JWT 인증** - 보안 토큰 기반 인증
-- **비밀번호 암호화** - bcryptjs를 사용한 안전한 저장
+- **🔥 Firebase** - 클라우드 데이터베이스 & 인증 시스템 (주요)
+  - **Firebase Authentication** - 안전한 사용자 인증
+  - **Cloud Firestore** - NoSQL 클라우드 데이터베이스
+  - **Firebase Analytics** - 사용자 행동 분석
 - **CORS 지원** - 크로스 오리진 요청 처리
 
 ## 🛠 기술 스택
@@ -29,13 +30,11 @@
 ### Backend
 - Node.js
 - Express.js
-- MongoDB & Mongoose
-- JWT (jsonwebtoken)
-- bcryptjs
+- Firebase (Authentication, Firestore, Analytics)
+- dotenv (환경변수)
+- CORS
 
 ### DevOps & Tools
-- dotenv (환경변수 관리)
-- CORS (Cross-Origin Resource Sharing)
 - Git & GitHub
 
 ## 📋 설치 및 실행
@@ -54,17 +53,25 @@ npm install
 ### 3. 환경변수 설정
 `.env.example` 파일을 참고하여 `.env` 파일을 생성하고 다음 정보를 입력하세요:
 
+#### 🔥 Firebase 설정 (필수)
 ```env
 NODE_ENV=development
 PORT=3000
 
-# MongoDB Atlas URI
-MONGO_ATLAS_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/your_database
-
-# 보안 키 (실제 운영 시 복잡한 키로 변경)
-JWT_SECRET=your_jwt_secret
-SESSION_SECRET=your_session_secret
+# Firebase 설정 (Firebase Console에서 가져오기)
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_STORAGE_BUCKET=your-project.firebasestorage.app
+FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+FIREBASE_APP_ID=your_app_id
+FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
+
+#### 🎯 Firebase Console에서 설정 가져오는 방법:
+1. [Firebase Console](https://console.firebase.google.com) 접속
+2. 프로젝트 선택 → **프로젝트 설정** 클릭
+3. **일반** 탭 → **웹앱** 설정에서 Config 정보 복사
 
 ### 4. 서버 실행
 ```bash
@@ -84,13 +91,10 @@ http://localhost:3000
 
 ```
 starbucks-homepage/
-├── 📁 server/                 # 백엔드 서버
-│   ├── 📁 models/             # 데이터베이스 모델
-│   │   └── User.js           # 사용자 모델
-│   ├── 📁 routes/             # API 라우트
-│   │   └── auth.js           # 인증 관련 API
-│   ├── app.js                # Express 서버 설정
-│   └── database.js           # MongoDB 연결 관리
+├── 📁 server/                 # 백엔드 서버 (Firebase 기반)
+│   ├── 📁 routes/
+│   │   └── firebase-auth.js   # Firebase 인증 관련 API
+│   └── app.js                 # Express 서버 설정
 ├── 📁 components/             # 재사용 가능한 컴포넌트
 │   ├── header.html           # 헤더 컴포넌트
 │   └── footer.html           # 푸터 컴포넌트
@@ -108,14 +112,22 @@ starbucks-homepage/
 
 ## 🔗 API 엔드포인트
 
-### 인증 (Authentication)
-- `GET /api/auth/check-email` - 이메일 중복 확인
-- `POST /api/auth/register` - 회원가입
-- `POST /api/auth/login` - 로그인
+### 🔥 Firebase 서비스 (주요)
+- `GET /api/firebase-config` - Firebase 설정 가져오기
+- `GET /api/firebase-status` - Firebase 서비스 상태 확인
+- `GET /api/firebase-auth/users` - Firebase 사용자 관리 (관리자용)
 
-### 시스템
+### 📊 시스템 상태
+- `GET /ping` - 기본 연결 테스트
+- `GET /api` - API 정보 및 엔드포인트 목록
 - `GET /api/health` - 서버 상태 확인
-- `GET /api/db-status` - 데이터베이스 상태 확인 (개발용)
+- `GET /api/db-status` - Firebase 상태로 리다이렉트
+
+### 🎯 클라이언트 사이드 인증 (Firebase)
+Firebase Authentication은 클라이언트에서 직접 처리됩니다:
+- **회원가입**: `firebaseRegister()` 함수 사용
+- **로그인**: `firebaseLogin()` 함수 사용
+- **로그아웃**: `firebaseLogout()` 함수 사용
 
 ## 🌐 페이지
 
@@ -129,11 +141,18 @@ starbucks-homepage/
 
 ## 🔒 보안 기능
 
-- ✅ **비밀번호 암호화** - bcryptjs 해싱
-- ✅ **JWT 토큰 인증** - 안전한 세션 관리
-- ✅ **입력값 검증** - SQL 인젝션 방지
+### 🔥 Firebase 보안 (메인)
+- ✅ **Firebase Authentication** - Google 등급 사용자 인증
+- ✅ **자동 비밀번호 해싱** - Firebase에서 자동 처리
+- ✅ **실시간 보안 규칙** - Firestore 보안 규칙
+- ✅ **다단계 인증 지원** - 이메일/전화 인증
+- ✅ **자동 토큰 갱신** - 세션 관리 자동화
+
+### 🛡️ 서버 보안
+- ✅ **환경변수 보호** - Firebase 키 서버사이드 관리
 - ✅ **CORS 설정** - 허용된 도메인만 접근
-- ✅ **환경변수 보호** - 민감한 정보 분리
+- ✅ **입력값 검증** - 클라이언트/서버 이중 검증
+- ✅ **API 요청 로깅** - 보안 감사 추적
 
 ## 📱 반응형 지원
 
@@ -143,14 +162,9 @@ starbucks-homepage/
 
 ## 🚀 배포
 
-### Heroku 배포
-```bash
-# Heroku CLI 설치 후
-heroku create your-app-name
-git push heroku main
-heroku config:set MONGO_ATLAS_URI="your_mongodb_uri"
-heroku config:set JWT_SECRET="your_jwt_secret"
-```
+### Firebase / Cloudtype 등 배포
+- **환경변수**: `FIREBASE_*` 값들을 배포 플랫폼의 Environment Variables에 설정
+- **시작 명령**: `node index.js` 또는 `npm start`
 
 ### Vercel 배포
 ```bash

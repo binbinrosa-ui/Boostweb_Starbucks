@@ -16,6 +16,364 @@
     <!-- Custom CSS -->
     <link href="css/menu-style.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <style>
+        /* 메뉴 카드 전체 동일한 높이 설정 - 음료 비율에 맞게 조정 */
+        .menu-card {
+            background: white !important;
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+            transition: transform 0.3s, box-shadow 0.3s !important;
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
+            width: 320px !important; /* 에스프레소 기준 고정 가로 */
+            max-width: 320px !important;
+            min-width: 320px !important;
+            height: 580px !important; /* 버튼이 잘리지 않도록 높이 증가 */
+            max-height: 580px !important;
+            min-height: 580px !important;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* 메뉴 카드 이미지 스타일 - 음료 크기에 맞는 비율 (3:4) */
+        .menu-card-image {
+            position: relative !important;
+            width: 320px !important; /* 에스프레소 기준 고정 가로 */
+            max-width: 320px !important;
+            min-width: 320px !important;
+            height: 280px !important; /* 에스프레소 기준 고정 세로 */
+            max-height: 280px !important;
+            min-height: 280px !important;
+            overflow: hidden !important;
+            border-radius: 15px 15px 0 0 !important;
+            background: linear-gradient(135deg, var(--starbucks-green), var(--starbucks-light-green)) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* 에스프레소 메뉴 기준 콘텐츠 영역 - 버튼이 잘리지 않도록 조정 */
+        .menu-card-content {
+            width: 320px !important; /* 에스프레소 기준 고정 가로 */
+            max-width: 320px !important;
+            min-width: 320px !important;
+            height: 300px !important; /* 버튼 표시를 위해 높이 증가 (580px - 280px) */
+            max-height: 300px !important;
+            min-height: 300px !important;
+            padding: 20px 20px 15px 20px !important; /* 하단 패딩 줄여 버튼 공간 확보 */
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* 메뉴 그리드 - 카드들이 동일한 높이를 갖도록 설정 */
+        /* 에스프레소 메뉴 기준 그리드 - 완벽한 중앙 정렬 반응형 */
+        .menu-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, 320px) !important; /* 에스프레소 크기로 고정 */
+            gap: 30px !important;
+            margin: 40px auto 0 auto !important; /* 상하좌우 중앙 정렬 */
+            padding: 0 20px !important; /* 좌우 여백 */
+            align-items: start !important;
+            justify-content: center !important; /* 가운데 정렬 */
+            max-width: 1400px !important; /* 최대 너비 제한 */
+            width: 100% !important;
+        }
+        
+        .menu-card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 음료 이미지가 비율에 맞게 표시 */
+            border-radius: 15px 15px 0 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-card:hover .menu-card-image img {
+            transform: scale(1.05); /* 호버 효과 살짝 줄임 */
+        }
+        
+        .menu-card-icon-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-size: 4rem; /* 음료 비율에 맞춰 아이콘 크기 증가 */
+        }
+        
+        .menu-card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 1rem;
+            color: var(--starbucks-green);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 이미지 로딩 애니메이션 */
+        .menu-card-image img {
+            opacity: 0;
+            animation: fadeInImage 0.5s ease forwards;
+        }
+        
+        @keyframes fadeInImage {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 반응형 설정 - 음료 비율 썸네일 크기 동일하게 유지 */
+        /* 태블릿 반응형 - 에스프레소 메뉴 크기 기준 */
+        @media (max-width: 768px) {
+            .menu-card {
+                width: 320px !important; /* 에스프레소 크기 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 580px !important; /* 버튼이 잘리지 않도록 높이 증가 */
+                max-height: 580px !important;
+                min-height: 580px !important;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, 320px) !important; /* 에스프레소 크기 고정 */
+                gap: 25px !important;
+                margin: 30px auto 0 auto !important;
+                padding: 0 15px !important;
+                justify-content: center !important;
+                max-width: 1000px !important;
+            }
+            
+            .menu-card-image {
+                width: 320px !important; /* 에스프레소 기준 고정 가로 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 280px !important; /* 에스프레소 기준 고정 세로 유지 */
+                max-height: 280px !important;
+                min-height: 280px !important;
+            }
+            
+            .menu-card-content {
+                width: 320px !important; /* 에스프레소 기준 고정 가로 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 300px !important; /* 버튼 표시를 위해 높이 증가 */
+                max-height: 300px !important;
+                min-height: 300px !important;
+                padding: 20px 20px 15px 20px !important; /* 하단 패딩 줄여 버튼 공간 확보 */
+            }
+            
+            .menu-card-icon {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 0.9rem !important;
+                top: 10px !important;
+                right: 10px !important;
+            }
+            
+            .menu-card-icon-fallback {
+                font-size: 3.5rem !important; /* 음료 비율에 맞춰 증가 */
+            }
+        }
+        
+        /* 모바일 반응형 - 에스프레소 메뉴 크기 기준 */
+        @media (max-width: 480px) {
+            .menu-card {
+                width: 320px !important; /* 에스프레소 크기 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 580px !important; /* 버튼이 잘리지 않도록 높이 증가 */
+                max-height: 580px !important;
+                min-height: 580px !important;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 320px !important; /* 에스프레소 크기로 한 줄 표시 */
+                gap: 20px !important;
+                margin: 25px auto 0 auto !important;
+                padding: 0 10px !important;
+                justify-content: center !important;
+                max-width: 100% !important;
+            }
+            
+            .menu-card-image {
+                width: 320px !important; /* 에스프레소 기준 고정 가로 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 280px !important; /* 에스프레소 기준 고정 세로 유지 */
+                max-height: 280px !important;
+                min-height: 280px !important;
+            }
+            
+            .menu-card-content {
+                width: 320px !important; /* 에스프레소 기준 고정 가로 유지 */
+                max-width: 320px !important;
+                min-width: 320px !important;
+                height: 300px !important; /* 버튼 표시를 위해 높이 증가 */
+                max-height: 300px !important;
+                min-height: 300px !important;
+                padding: 15px 15px 10px 15px !important; /* 하단 패딩 줄여 버튼 공간 확보 */
+            }
+            
+            .menu-card-icon {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 0.8rem !important;
+                top: 8px !important;
+                right: 8px !important;
+            }
+            
+            .menu-card-icon-fallback {
+                font-size: 3rem !important;
+            }
+        }
+
+        /* 초소형 모바일 반응형 - 에스프레소 메뉴 크기 완벽 중앙 정렬 */
+        @media (max-width: 360px) {
+            .menu-grid {
+                padding: 0 5px !important;
+                margin: 20px auto 0 auto !important;
+                gap: 15px !important;
+            }
+            
+            .menu-card {
+                margin: 0 auto !important; /* 카드 자체도 중앙 정렬 */
+            }
+        }
+
+        /* 메뉴 섹션 컨테이너 중앙 정렬 개선 */
+        .container {
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+        }
+
+        .category-section {
+            margin: 0 auto !important;
+            text-align: center !important;
+        }
+
+        /* 대형 화면 반응형 - 에스프레소 메뉴 크기 기준 최적화 */
+        @media (min-width: 1200px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, 320px) !important;
+                gap: 35px !important;
+                max-width: 1600px !important;
+                padding: 0 30px !important;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .menu-grid {
+                gap: 40px !important;
+                max-width: 1800px !important;
+            }
+        }
+
+        /* 메뉴 카드 내부 텍스트 요소들 균일하게 배치 - 음료 비율에 맞춰 조정 */
+        .menu-card h4 {
+            color: var(--starbucks-green) !important;
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 12px !important;
+            font-family: var(--title-font) !important;
+            min-height: 35px !important; /* 제목의 최소 높이 줄임 */
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1.2 !important;
+        }
+
+        .menu-card-description {
+            color: #666 !important;
+            font-size: 0.95rem !important;
+            margin-bottom: 15px !important;
+            line-height: 1.4 !important;
+            min-height: 45px !important; /* 설명의 최소 높이 줄임 */
+            display: flex !important;
+            align-items: center !important;
+            text-align: center !important;
+            justify-content: center !important;
+        }
+
+        .menu-card-price {
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            color: var(--starbucks-green) !important;
+            margin-bottom: 12px !important;
+            min-height: 25px !important; /* 가격의 최소 높이 줄임 */
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .menu-card-nutrition {
+            font-size: 0.8rem !important;
+            color: #999 !important;
+            margin: 0 0 8px 0 !important;
+            height: 30px !important; /* 고정 높이로 버튼 공간 확보 */
+            max-height: 30px !important;
+            min-height: 30px !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+        }
+
+        .order-btn {
+            background: var(--starbucks-green) !important;
+            color: white !important;
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 20px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s !important;
+            cursor: pointer !important;
+            font-family: var(--title-font) !important;
+            height: 45px !important; /* 고정 높이로 잘림 방지 */
+            max-height: 45px !important;
+            min-height: 45px !important;
+            width: 120px !important; /* 고정 너비 */
+            max-width: 120px !important;
+            min-width: 120px !important;
+            margin: 5px auto 0 auto !important; /* 상단 여백과 중앙 정렬 */
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .order-btn:hover {
+            background: var(--starbucks-light-green) !important;
+            color: white !important;
+        }
+    </style>
     <!-- Component Loader -->
     <script src="js/load-components.js" defer></script>
 </head> 
@@ -62,7 +420,10 @@
                 <div class="menu-grid">
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-mug-hot"></i>
+                            <img src="images/gallery/drink-americano.jpg" alt="아메리카노" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -78,7 +439,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-coffee"></i>
+                            <img src="images/gallery/drink-caffe-latte.jpg" alt="카페 라떼" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-coffee"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -94,7 +458,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-heart"></i>
+                            <img src="images/gallery/drink-cappuccino.jpg" alt="카푸치노" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-heart"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -110,7 +477,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-candy-cane"></i>
+                            <img src="images/gallery/drink-caffe-mocha.jpg" alt="카페 모카" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-candy-cane"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -132,7 +502,10 @@
                 <div class="menu-grid">
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-glass-whiskey"></i>
+                            <img src="images/gallery/drink-java-chip-frappuccino.jpg" alt="자바 칩 프라푸치노" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-glass-whiskey"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-snowflake"></i>
                             </div>
@@ -148,7 +521,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-ice-cream"></i>
+                            <img src="images/gallery/drink-caramel-frappuccino.jpg" alt="카라멜 프라푸치노" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-ice-cream"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-snowflake"></i>
                             </div>
@@ -164,7 +540,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-cookie-bite"></i>
+                            <img src="images/gallery/drink-cookies-cream-frappuccino.jpg" alt="쿠키 앤 크림 프라푸치노" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-snowflake"></i>
                             </div>
@@ -186,7 +565,10 @@
                 <div class="menu-grid">
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-tint"></i>
+                            <img src="images/gallery/drink-cold-brew.jpg" alt="콜드 브루" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-tint"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-snowflake"></i>
                             </div>
@@ -202,7 +584,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-glass-martini"></i>
+                            <img src="images/gallery/drink-vanilla-cream-cold-brew.jpg" alt="바닐라 크림 콜드 브루" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-glass-martini"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-snowflake"></i>
                             </div>
@@ -224,7 +609,10 @@
                 <div class="menu-grid">
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-leaf"></i>
+                            <img src="images/gallery/drink-earl-grey-tea.jpg" alt="얼 그레이 티" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-leaf"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -240,7 +628,10 @@
 
                     <div class="menu-card fade-in">
                         <div class="menu-card-image">
-                            <i class="fas fa-spa"></i>
+                            <img src="images/gallery/drink-chamomile-tea.jpg" alt="캐모마일 티" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="menu-card-icon-fallback" style="display: none;">
+                                <i class="fas fa-spa"></i>
+                            </div>
                             <div class="menu-card-icon">
                                 <i class="fas fa-fire"></i>
                             </div>
@@ -267,7 +658,10 @@
             <div class="menu-grid">
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-bread-slice"></i>
+                        <img src="images/gallery/food-croissant.jpg" alt="크루아상" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-bread-slice"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>크루아상</h4>
@@ -280,7 +674,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-birthday-cake"></i>
+                        <img src="images/gallery/food-ny-cheesecake.jpg" alt="뉴욕 치즈케이크" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>뉴욕 치즈케이크</h4>
@@ -293,7 +690,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-hamburger"></i>
+                        <img src="images/gallery/food-chicken-salad-sandwich.jpg" alt="치킨 샐러드 샌드위치" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-hamburger"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>치킨 샐러드 샌드위치</h4>
@@ -306,7 +706,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-cookie"></i>
+                        <img src="images/gallery/food-chocolate-chip-cookie.jpg" alt="초콜릿 칩 쿠키" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-cookie"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>초콜릿 칩 쿠키</h4>
@@ -329,7 +732,10 @@
             <div class="menu-grid">
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-mug-hot"></i>
+                        <img src="images/gallery/product-starbucks-mug.jpg" alt="스타벅스 머그컵" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>스타벅스 머그컵</h4>
@@ -341,7 +747,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-coffee"></i>
+                        <img src="images/gallery/product-stainless-tumbler.jpg" alt="스테인리스 텀블러" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-coffee"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>스테인리스 텀블러</h4>
@@ -353,7 +762,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-seedling"></i>
+                        <img src="images/gallery/product-pike-place-roast.jpg" alt="원두 - 파이크 플레이스 로스트" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-seedling"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>원두 - 파이크 플레이스 로스트</h4>
@@ -375,7 +787,10 @@
             <div class="menu-grid">
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-credit-card"></i>
+                        <img src="images/gallery/card-starbucks-card.jpg" alt="스타벅스 카드" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>스타벅스 카드</h4>
@@ -387,7 +802,10 @@
 
                 <div class="menu-card fade-in">
                     <div class="menu-card-image">
-                        <i class="fas fa-mobile-alt"></i>
+                        <img src="images/gallery/card-mobile-card.jpg" alt="모바일 카드" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="menu-card-icon-fallback" style="display: none;">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
                     </div>
                     <div class="menu-card-content">
                         <h4>모바일 카드</h4>
@@ -459,6 +877,27 @@
             btn.addEventListener('click', function() {
                 const itemName = this.closest('.menu-card').querySelector('h4').textContent;
                 alert(`${itemName}을(를) 주문하시겠습니까?\n\n실제 주문 기능은 구현되지 않았습니다.`);
+            });
+        });
+        
+        // 이미지 lazy loading 및 로딩 실패 시 대체 처리
+        document.querySelectorAll('.menu-card-image img').forEach(img => {
+            // lazy loading 속성 추가
+            if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+            }
+            
+            img.addEventListener('load', function() {
+                console.log(`✅ 이미지 로드 성공: ${this.alt}`);
+            });
+            
+            img.addEventListener('error', function() {
+                console.log(`❌ 이미지 로드 실패: ${this.alt} - 기본 아이콘으로 대체`);
+                this.style.display = 'none';
+                const fallback = this.nextElementSibling;
+                if (fallback && fallback.classList.contains('menu-card-icon-fallback')) {
+                    fallback.style.display = 'flex';
+                }
             });
         });
     </script>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>마이 스타벅스 - Starbucks Korea - 스타벅스 코리아</title>
+    <link rel="icon" href="images/icon.png" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="스타벅스 코리아 마이페이지" name="description" />
+    <meta content="스타벅스, 마이페이지, 내정보" name="keywords" />
+    <meta content="Starbucks Korea" name="author" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- Component Loader -->
+    <script src="js/load-components.js" defer></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="preloader1"></div>
+        </div>
+
+        <!-- Header Placeholder (컴포넌트로 로드됨) -->
+        <div id="header-placeholder"></div>
+
+        <!-- Content -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+            
+            <!-- MyPage Section -->
+            <section class="mypage-section pt100 pb100">
+                <div class="container">
+                    <div class="row">
+                        <!-- 사이드바 -->
+                        <div class="col-md-3">
+                            <div class="mypage-sidebar" data-aos="fade-right">
+                                <div class="sidebar-header">
+                                    <div class="user-profile">
+                                        <div class="profile-image">
+                                            <i class="fas fa-user-circle fa-3x text-success"></i>
+                                        </div>
+                                        <div class="profile-info">
+                                            <h5 id="sidebarUserName">사용자</h5>
+                                            <p id="sidebarUserEmail" class="text-muted">user@example.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <ul class="sidebar-menu">
+                                    <li class="active">
+                                        <a href="#" data-section="profile">
+                                            <i class="fas fa-user"></i> 내 정보 관리
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-section="password">
+                                            <i class="fas fa-lock"></i> 비밀번호 변경
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-section="orders">
+                                            <i class="fas fa-shopping-bag"></i> 주문 내역
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-section="rewards">
+                                            <i class="fas fa-star"></i> 리워드 & 혜택
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-section="favorites">
+                                            <i class="fas fa-heart"></i> 찜한 상품
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-section="cards">
+                                            <i class="fas fa-credit-card"></i> 스타벅스 카드
+                                        </a>
+                                    </li>
+                                    <li class="logout-item">
+                                        <a href="#" id="logoutBtn">
+                                            <i class="fas fa-sign-out-alt"></i> 로그아웃
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 메인 콘텐츠 -->
+                        <div class="col-md-9">
+                            <!-- 내 정보 관리 섹션 -->
+                            <div class="mypage-content active" id="profileSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-user me-2"></i>내 정보 관리</h3>
+                                    <p class="text-muted">회원 정보를 확인하고 수정할 수 있습니다.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <form id="profileForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="profileName" class="form-label">이름</label>
+                                                <input type="text" class="form-control" id="profileName" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="profileEmail" class="form-label">이메일</label>
+                                                <input type="email" class="form-control" id="profileEmail" readonly>
+                                                <small class="text-muted">이메일은 변경할 수 없습니다.</small>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="profileAddress" class="form-label">주소</label>
+                                                <input type="text" class="form-control" id="profileAddress" placeholder="주소를 입력하세요">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="profilePhone" class="form-label">휴대폰 번호</label>
+                                                <input type="tel" class="form-control" id="profilePhone" placeholder="010-0000-0000">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="profileBirthdate" class="form-label">생년월일</label>
+                                                <input type="date" class="form-control" id="profileBirthdate">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fas fa-save me-2"></i>정보 수정
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- 비밀번호 변경 섹션 -->
+                            <div class="mypage-content" id="passwordSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-lock me-2"></i>비밀번호 변경</h3>
+                                    <p class="text-muted">보안을 위해 정기적으로 비밀번호를 변경해 주세요.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <form id="passwordForm">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="currentPassword" class="form-label">현재 비밀번호</label>
+                                                <div class="password-input-wrapper">
+                                                    <input type="password" class="form-control" id="currentPassword" required>
+                                                    <button type="button" class="password-toggle" data-target="currentPassword">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="newPassword" class="form-label">새 비밀번호</label>
+                                                <div class="password-input-wrapper">
+                                                    <input type="password" class="form-control" id="newPassword" required>
+                                                    <button type="button" class="password-toggle" data-target="newPassword">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                                <small class="form-text text-muted">8자 이상, 영문, 숫자, 특수문자 조합</small>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="confirmPassword" class="form-label">새 비밀번호 확인</label>
+                                                <div class="password-input-wrapper">
+                                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                                    <button type="button" class="password-toggle" data-target="confirmPassword">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                                <div id="passwordMatchMessage" class="mt-1"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fas fa-key me-2"></i>비밀번호 변경
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- 주문 내역 섹션 -->
+                            <div class="mypage-content" id="ordersSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-shopping-bag me-2"></i>주문 내역</h3>
+                                    <p class="text-muted">최근 주문 내역을 확인할 수 있습니다.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <div class="empty-state text-center py-5">
+                                        <i class="fas fa-shopping-bag fa-3x text-muted mb-3"></i>
+                                        <h5 class="text-muted">주문 내역이 없습니다</h5>
+                                        <p class="text-muted">스타벅스에서 주문을 시작해보세요!</p>
+                                        <a href="menu.html" class="btn btn-success">메뉴 보러가기</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 리워드 & 혜택 섹션 -->
+                            <div class="mypage-content" id="rewardsSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-star me-2"></i>리워드 & 혜택</h3>
+                                    <p class="text-muted">스타벅스 리워드 혜택을 확인하세요.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <div class="row">
+                                        <div class="col-md-4 text-center mb-4">
+                                            <div class="reward-item">
+                                                <div class="reward-icon">
+                                                    <i class="fas fa-star fa-2x text-warning"></i>
+                                                </div>
+                                                <h5 class="mt-2">스타벅스 별</h5>
+                                                <h3 class="text-success">0 ★</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center mb-4">
+                                            <div class="reward-item">
+                                                <div class="reward-icon">
+                                                    <i class="fas fa-gift fa-2x text-success"></i>
+                                                </div>
+                                                <h5 class="mt-2">쿠폰</h5>
+                                                <h3 class="text-success">0개</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-center mb-4">
+                                            <div class="reward-item">
+                                                <div class="reward-icon">
+                                                    <i class="fas fa-trophy fa-2x text-warning"></i>
+                                                </div>
+                                                <h5 class="mt-2">등급</h5>
+                                                <h3 class="text-success">Welcome</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 찜한 상품 섹션 -->
+                            <div class="mypage-content" id="favoritesSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-heart me-2"></i>찜한 상품</h3>
+                                    <p class="text-muted">관심 있는 상품들을 모아보세요.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <div class="empty-state text-center py-5">
+                                        <i class="fas fa-heart fa-3x text-muted mb-3"></i>
+                                        <h5 class="text-muted">찜한 상품이 없습니다</h5>
+                                        <p class="text-muted">마음에 드는 상품을 찜해보세요!</p>
+                                        <a href="menu.html" class="btn btn-success">메뉴 보러가기</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 스타벅스 카드 섹션 -->
+                            <div class="mypage-content" id="cardsSection" data-aos="fade-up">
+                                <div class="content-header">
+                                    <h3><i class="fas fa-credit-card me-2"></i>스타벅스 카드</h3>
+                                    <p class="text-muted">보유하신 스타벅스 카드를 관리하세요.</p>
+                                </div>
+                                
+                                <div class="profile-card">
+                                    <div class="empty-state text-center py-5">
+                                        <i class="fas fa-credit-card fa-3x text-muted mb-3"></i>
+                                        <h5 class="text-muted">등록된 카드가 없습니다</h5>
+                                        <p class="text-muted">스타벅스 카드를 등록하고 편리하게 이용하세요!</p>
+                                        <button class="btn btn-success">카드 등록하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- content close -->
+
+        <!-- Footer Placeholder (컴포넌트로 로드됨) -->
+        <div id="footer-placeholder"></div>
+
+        <!-- Back to Top -->
+        <a href="#" id="back-to-top"></a>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle text-success me-2"></i>성공
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="successMessage">
+                    작업이 완료되었습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-circle text-danger me-2"></i>오류
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="errorMessage">
+                    오류가 발생했습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Firebase: 사용자 정보 관리 및 인증 상태 확인 -->
+    <script type="module" src="app.js"></script>
+    <script type="module" src="js/mypage.js"></script>
+    
+    <script type="module">
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Back to top functionality
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
